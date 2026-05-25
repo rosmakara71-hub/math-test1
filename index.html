@@ -168,6 +168,12 @@
             box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
         }
 
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
         .result-container {
             display: none;
             background: var(--card-background);
@@ -405,6 +411,9 @@
     </div>
 
     <script>
+        // ⚠️ យក Web App URL ដែលបានចម្លងពី Google Apps Script មកប្តូរត្រង់នេះ
+        const GOOGLE_SCRIPT_URL = 'ប្តូរ_WEB_APP_URL_របស់_អ្នក_នៅ_ត្រង់_នេះ';
+
         const correctAnswers = {
             q1: 'C', q2: 'B', q3: 'A', q4: 'C', q5: 'B',
             q6: 'C', q7: 'B', q8: 'B', q9: 'A', q10: 'B',
@@ -413,6 +422,12 @@
 
         function calculateScore(event) {
             event.preventDefault();
+            
+            // បិទប៊ូតុងមិនឱ្យចុចដដែលៗពេលកំពុងបញ្ជូនទិន្នន័យ
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "កំពុងរក្សាទុកទិន្នន័យ...";
+
             let score = 0;
             const form = document.getElementById('quizForm');
             const formData = new FormData(form);
@@ -434,8 +449,11 @@
                 }
             }
 
-            document.getElementById('resName').innerText = document.getElementById('studentName').value;
-            document.getElementById('resClass').innerText = document.getElementById('studentClass').value;
+            const sName = document.getElementById('studentName').value;
+            const sClass = document.getElementById('studentClass').value;
+
+            document.getElementById('resName').innerText = sName;
+            document.getElementById('resClass').innerText = sClass;
             document.getElementById('scoreValue').innerText = score + " / 15";
             
             const msg = document.getElementById('feedbackMessage');
@@ -445,6 +463,37 @@
 
             document.getElementById('resultCard').style.display = 'block';
             document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+
+            // ហៅអនុគមន៍ផ្ញើទិន្នន័យទៅ Google Sheets
+            sendDataToGoogleSheet(sName, sClass, score, submitBtn);
+        }
+
+        function sendDataToGoogleSheet(name, className, score, button) {
+            const payload = {
+                studentName: name,
+                studentClass: className,
+                score: score + " / 15"
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', 
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                button.innerText = "បញ្ជូនចម្លើយជោគជ័យ (Submitted)";
+                console.log("Data successfully sent to Google Sheets.");
+            })
+            .catch(error => {
+                button.disabled = false;
+                button.innerText = "ព្យាយាមម្តងទៀត (Retry)";
+                alert("មានបញ្ហាក្នុងការរក្សាទុកទិន្នន័យ! សូមពិនិត្យអ៊ីនធឺណិតរបស់អ្នក។");
+                console.error("Error:", error);
+            });
         }
     </script>
 </body>
