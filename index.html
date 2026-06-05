@@ -174,6 +174,24 @@
             cursor: pointer;
         }
 
+        .solution-box {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0f7ff;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .solution-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+
         .submit-btn {
             display: block;
             width: 100%;
@@ -237,19 +255,21 @@
         </div>
 
         <div class="sticky-bar">
-            <div class="timer">ម៉ោងរាប់ថយក្រោយ៖ <span id="timeDisplay">៦០:០០</span></div>
-            <div style="font-weight: bold;">ពិន្ទុរុបរួម៖ ១០០</div>
+            <div class="timer">ម៉ោងរាប់ថយក្រោយ៖ <span id="timeDisplay">១៥០:០០</span></div>
+            <div style="font-weight: bold;">ពិន្ទុរុបរួម៖ ១២៥</div>
         </div>
 
         <div class="result-box" id="resultBox">
             <div class="result-title">លទ្ធផលប្រឡងទទួលបាន</div>
             <p id="studentResultName" style="font-weight: bold;"></p>
-            <p style="font-size: 24px; color: #c0392b; font-weight: bold;">ពិន្ទុ៖ <span id="scoreDisplay">0</span> / ១០០</p>
+            <p style="font-size: 24px; color: #c0392b; font-weight: bold;">ពិន្ទុ៖ <span id="scoreDisplay">0</span> / ១២៥</p>
             <p id="timeSpentDisplay" style="font-style: italic; color: #7f8c8d;"></p>
+            <p style="color: #2980b9; font-weight: bold; margin-top: 10px;">👇 សូមពិនិត្យមើលដំណោះស្រាយលម្អិតនៅខាងក្រោមលំហាត់នីមួយៗ!</p>
         </div>
 
         <form id="quizForm">
             
+            <!-- មេរៀន៖ លីមីត និងភាពជាប់ -->
             <div class="question-card" id="q1_box">
                 <div class="question-text">លំហាត់ ១. គណនាលីមីតរាងមិនកំណត់ $\frac{0}{0}$៖ $\lim_{x \to 2} \frac{x^2 - 5x + 6}{x - 2}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
@@ -257,6 +277,12 @@
                     <label class="option-label"><input type="radio" name="q1" value="B" data-correct="true"> $-1$</label>
                     <label class="option-label"><input type="radio" name="q1" value="C"> $0$</label>
                     <label class="option-label"><input type="radio" name="q1" value="D"> $2$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ដាក់ភាគយកជាផលគុណកត្តា៖ $x^2 - 5x + 6 = (x - 2)(x - 3)$<br>
+                    សម្រួលកត្តាខុសពីសូន្យ $(x - 2)$ ចោល៖ $\lim_{x \to 2} \frac{(x-2)(x-3)}{x-2} = \lim_{x \to 2} (x - 3)$<br>
+                    ជំនួសតម្លៃ $x = 2$ ចូល៖ $2 - 3 = -1$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$-1$**។
                 </div>
             </div>
 
@@ -268,6 +294,12 @@
                     <label class="option-label"><input type="radio" name="q2" value="C"> $\frac{1}{5}$</label>
                     <label class="option-label"><input type="radio" name="q2" value="D"> $\infty$</label>
                 </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ទាញតួដែលមានដឺក្រេខ្ពស់ជាងគេនៅភាគយក និងភាគបែងជាកត្តារួម៖<br>
+                    $\lim_{x \to \infty} \frac{x^2\left(3 - \frac{4}{x} + \frac{1}{x^2}\right)}{x^2\left(2 + \frac{5}{x^2}\right)} = \lim_{x \to \infty} \frac{3 - \frac{4}{x} + \frac{1}{x^2}}{2 + \frac{5}{x^2}}$<br>
+                    ដោយសារកាលណា $x \to \infty$ នោះ $\frac{4}{x}, \frac{1}{x^2}, \frac{5}{x^2} \to 0$ គេបានលទ្ធផល $\frac{3}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{3}{2}$**។
+                </div>
             </div>
 
             <div class="question-card" id="q3_box">
@@ -277,6 +309,11 @@
                     <label class="option-label"><input type="radio" name="q3" value="B"> $\frac{2}{5}$</label>
                     <label class="option-label"><input type="radio" name="q3" value="C" data-correct="true"> $\frac{5}{2}$</label>
                     <label class="option-label"><input type="radio" name="q3" value="D"> $0$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ប្រើរូបមន្តគ្រឹះ $\lim_{u \to 0} \frac{\sin u}{u} = 1$។<br>
+                    យើងសរសេរលីមីតឡើងវិញ៖ $\lim_{x \to 0} \frac{\sin 5x}{5x} \times \frac{5}{2} = 1 \times \frac{5}{2} = \frac{5}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{5}{2}$**។
                 </div>
             </div>
 
@@ -288,6 +325,11 @@
                     <label class="option-label"><input type="radio" name="q4" value="C" data-correct="true"> $e^3$</label>
                     <label class="option-label"><input type="radio" name="q4" value="D"> $1$</label>
                 </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ប្រើរូបមន្តគ្រឹះ $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$។<br>
+                    សរសេរបំបែកសន្ទស្សន៍៖ $\lim_{x \to \infty} \left[\left(1 + \frac{1}{x}\right)^x\right]^3 = e^3$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$e^3$**។
+                </div>
             </div>
 
             <div class="question-card" id="q5_box">
@@ -298,155 +340,330 @@
                     <label class="option-label"><input type="radio" name="q5" value="C"> $0$</label>
                     <label class="option-label"><input type="radio" name="q5" value="D"> $-2$</label>
                 </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ដើម្បីឱ្យអនុគមន៍ជាប់ត្រង់ $x_0 = 1$ លុះត្រាតែ $\lim_{x \to 1} f(x) = f(1)$។<br>
+                    គណនាលីមីត៖ $\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x-1)(x+1)}{x-1} = \lim_{x \to 1} (x+1) = 1 + 1 = 2$។<br>
+                    ដោយសារ $f(1) = k$ នាំឱ្យ $k = 2$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$2$**។
+                </div>
             </div>
 
+            <!-- មេរៀន៖ ដេរីវេ និងការអនុវត្ត -->
             <div class="question-card" id="q6_box">
-                <div class="question-text">លំហាត់ ៦. រកតម្លៃ $a$ ដើម្បីឱ្យអនុគមន៍ $f(x) = \begin{cases} ax + 3 & \text{បើ } x \le 2 \\ 2x - 1 & \text{បើ } x > 2 \end{cases}$ ជាប់លើ $\mathbb{R}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ៦. គណនាដេរីវេនៃអនុគមន៍ $f(x) = (3x^2 - 5x + 2)^4$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q6" value="A"> $a = 1$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="B" data-correct="true"> $a = 0$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="C"> $a = -1$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="D"> $a = 2$</label>
+                    <label class="option-label"><input type="radio" name="q6" value="A"> $4(3x^2 - 5x + 2)^3$</label>
+                    <label class="option-label"><input type="radio" name="q6" value="B" data-correct="true"> $4(6x - 5)(3x^2 - 5x + 2)^3$</label>
+                    <label class="option-label"><input type="radio" name="q6" value="C"> $(6x - 5)^4$</label>
+                    <label class="option-label"><input type="radio" name="q6" value="D"> $12x(3x^2 - 5x + 2)^3$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ប្រើរូបមន្តដេរីវេអនុគមន៍បណ្តាក់៖ $(u^n)' = n \cdot u' \cdot u^{n-1}$<br>
+                    ក្នុងនេះ $u = 3x^2 - 5x + 2 \implies u' = 6x - 5$ និង $n = 4$។<br>
+                    គេបាន $f'(x) = 4(6x - 5)(3x^2 - 5x + 2)^3$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$4(6x - 5)(3x^2 - 5x + 2)^3$**។
                 </div>
             </div>
 
             <div class="question-card" id="q7_box">
-                <div class="question-text">លំហាត់ ៧. គេឱ្យអនុគមន៍ $f(x) = \frac{x+2}{x^2 - 4x + 3}$។ តើអនុគមន៍នេះដាច់ (មិនជាប់) ត្រង់តម្លៃ $x$ ណាខ្លះ? <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ៧. រករូបមន្តដេរីវេនៃអនុគមន៍ផលចែក $f(x) = \frac{2x + 1}{x - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q7" value="A"> $x = -2$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="B"> $x = 0$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="C" data-correct="true"> $x = 1$ និង $x = 3$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="D"> $x = -1$ និង $x = -3$</label>
+                    <label class="option-label"><input type="radio" name="q7" value="A" data-correct="true"> $f'(x) = \frac{-7}{(x-3)^2}$</label>
+                    <label class="option-label"><input type="radio" name="q7" value="B"> $f'(x) = \frac{7}{(x-3)^2}$</label>
+                    <label class="option-label"><input type="radio" name="q7" value="C"> $f'(x) = \frac{2}{(x-3)^2}$</label>
+                    <label class="option-label"><input type="radio" name="q7" value="D"> $f'(x) = 2$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ប្រើរូបមន្តដេរីវេផលចែក៖ $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$<br>
+                    $f'(x) = \frac{(2x+1)'(x-3) - (2x+1)(x-3)'}{(x-3)^2} = \frac{2(x-3) - (2x+1)(1)}{(x-3)^2} = \frac{2x - 6 - 2x - 1}{(x-3)^2} = \frac{-7}{(x-3)^2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$f'(x) = \frac{-7}{(x-3)^2}$**។
                 </div>
             </div>
 
             <div class="question-card" id="q8_box">
-                <div class="question-text">លំហាត់ ៨. គណនាដេរីវេនៃអនុគមន៍ $f(x) = (3x^2 - 5x + 2)^4$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ៨. គណនាដេរីវេទីពីរ $f''(x)$ នៃអនុគមន៍ $f(x) = x \cdot \ln x$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q8" value="A"> $4(3x^2 - 5x + 2)^3$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="B" data-correct="true"> $4(6x - 5)(3x^2 - 5x + 2)^3$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="C"> $(6x - 5)^4$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="D"> $12x(3x^2 - 5x + 2)^3$</label>
+                    <label class="option-label"><input type="radio" name="q8" value="A" data-correct="true"> $f''(x) = \frac{1}{x}$</label>
+                    <label class="option-label"><input type="radio" name="q8" value="B"> $f''(x) = \ln x + 1$</label>
+                    <label class="option-label"><input type="radio" name="q8" value="C"> $f''(x) = 1$</label>
+                    <label class="option-label"><input type="radio" name="q8" value="D"> $f''(x) = -\frac{1}{x^2}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    គណនាដេរីវេទី១ តាមរូបមន្ត $(uv)' = u'v + uv'$៖<br>
+                    $f'(x) = (x)'\ln x + x(\ln x)' = 1 \cdot \ln x + x \cdot \frac{1}{x} = \ln x + 1$<br>
+                    គណនាដេរីវេទី២៖ $f''(x) = (\ln x + 1)' = \frac{1}{x} + 0 = \frac{1}{x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{1}{x}$**។
                 </div>
             </div>
 
+            <!-- មេរៀន៖ ក្រាបនៃអនុគមន៍ -->
             <div class="question-card" id="q9_box">
-                <div class="question-text">លំហាត់ ៩. រករូបមន្តដេរីវេនៃអនុគមន៍ផលចែក $f(x) = \frac{2x + 1}{x - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ៩. រកសមីការអាស៊ីមតូតឈរនៃក្រាបតាងអនុគមន៍ $y = \frac{3x - 1}{x - 2}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q9" value="A" data-correct="true"> $f'(x) = \frac{-7}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="B"> $f'(x) = \frac{7}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="C"> $f'(x) = \frac{2}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="D"> $f'(x) = 2$</label>
+                    <label class="option-label"><input type="radio" name="q9" value="A"> $y = 3$</label>
+                    <label class="option-label"><input type="radio" name="q9" value="B"> $x = -2$</label>
+                    <label class="option-label"><input type="radio" name="q9" value="C" data-correct="true"> $x = 2$</label>
+                    <label class="option-label"><input type="radio" name="q9" value="D"> $y = 2$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    អាស៊ីមតូតឈរកើតឡើងត្រង់តម្លៃដែលធ្វើឱ្យភាគបែងសូន្យ និងភាគយកខុសពីសូន្យ។<br>
+                    ឱ្យភាគបែង $x - 2 = 0 \implies x = 2$។ ដោយសារ $\lim_{x \to 2} y = \infty$ នាំឱ្យ $x = 2$ ជាសមីការអាស៊ីមតូតឈរ។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$x = 2$**។
                 </div>
             </div>
 
             <div class="question-card" id="q10_box">
-                <div class="question-text">លំហាត់ ១០. គណនាដេរីវេនៃអនុគមន៍ត្រីកោណមាត្រ $f(x) = \sin(2x) + \cos^2 x$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១០. រកសមីការអាស៊ីមតូតដេកនៃក្រាបតាងអនុគមន៍ $y = \frac{4x^2 + 1}{2x^2 - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q10" value="A"> $f'(x) = 2\cos(2x) + 2\cos x$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="B" data-correct="true"> $f'(x) = 2\cos(2x) - \sin(2x)$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="C"> $f'(x) = \cos(2x) - 2\sin x\cos x$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="D"> $f'(x) = 2\cos(2x)$</label>
+                    <label class="option-label"><input type="radio" name="q10" value="A"> $y = 4$</label>
+                    <label class="option-label"><input type="radio" name="q10" value="B" data-correct="true"> $y = 2$</label>
+                    <label class="option-label"><input type="radio" name="q10" value="C"> $x = 2$</label>
+                    <label class="option-label"><input type="radio" name="q10" value="D"> គ្មានអាស៊ីមតូតដេក</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    អាស៊ីមតូតដេករកបានតាមរយៈគណនាលីមីតអនុគមន៍កាលណា $x \to \infty$៖<br>
+                    $\lim_{x \to \infty} \frac{4x^2 + 1}{2x^2 - 3} = \frac{4}{2} = 2$។ ដូចនេះបន្ទាត់ $y = 2$ ជាអាស៊ីមតូតដេក។ ចម្លើយត្រឹមត្រូវគឺ **$y = 2$**។
                 </div>
             </div>
 
             <div class="question-card" id="q11_box">
-                <div class="question-text">លំហាត់ ១១. គណនាដេរីវេទីពីរ $f''(x)$ នៃអនុគមន៍ $f(x) = x \cdot \ln x$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១១. រកកូអរដោនេចំណុចរបត់ (Inflection point) នៃក្រាបតាងអនុគមន៍ $y = x^3 - 3x^2 + 5$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q11" value="A" data-correct="true"> $f''(x) = \frac{1}{x}$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="B"> $f''(x) = \ln x + 1$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="C"> $f''(x) = 1$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="D"> $f''(x) = -\frac{1}{x^2}$</label>
+                    <label class="option-label"><input type="radio" name="q11" value="A"> $(0, 5)$</label>
+                    <label class="option-label"><input type="radio" name="q11" value="B"> $(2, 1)$</label>
+                    <label class="option-label"><input type="radio" name="q11" value="C" data-correct="true"> $(1, 3)$</label>
+                    <label class="option-label"><input type="radio" name="q11" value="D"> $(1, 5)$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    រកចំណុចរបត់តាមរយៈដេរីវេទីពីរ $y'' = 0$៖<br>
+                    $y' = 3x^2 - 6x \implies y'' = 6x - 6$<br>
+                    ឱ្យ $y'' = 0 \implies 6x - 6 = 0 \implies x = 1$។<br>
+                    ជំនួស $x = 1$ ក្នុងអនុគមន៍ដើម៖ $y = (1)^3 - 3(1)^2 + 5 = 1 - 3 + 5 = 3$។ ដូចនេះចំណុចរបត់គឺ **$(1, 3)$**។
                 </div>
             </div>
 
+            <!-- មេរៀន៖ អនុគមន៍អិចស្ប៉ូណង់ស្យែល និងឡូការីត -->
             <div class="question-card" id="q12_box">
-                <div class="question-text">លំហាត់ ១២. រកមេគុណប្រាប់ទិសនៃបន្ទាត់ប៉ះនឹងក្រាបតាងអនុគមន៍ $f(x) = e^{2x}$ ត្រង់ចំណុចដែលមានអាប់ស៊ីស $x_0 = 0$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១២. រកដែនកំណត់នៃអនុគមន៍ $f(x) = \ln(x^2 - 4)$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q12" value="A"> $1$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="B" data-correct="true"> $2$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="C"> $0$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="D"> $e$</label>
+                    <label class="option-label"><input type="radio" name="q12" value="A"> $D = (-2, 2)$</label>
+                    <label class="option-label"><input type="radio" name="q12" value="B" data-correct="true"> $D = (-\infty, -2) \cup (2, +\infty)$</label>
+                    <label class="option-label"><input type="radio" name="q12" value="C"> $D = \mathbb{R} \setminus \{-2, 2\}$</label>
+                    <label class="option-label"><input type="radio" name="q12" value="D"> $D = (2, +\infty)$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    អនុគមន៍ឡូការីតនេពែមានន័យលុះត្រាតែកន្សោមខាងក្នុងធំជាងសូន្យដាច់៖ $x^2 - 4 > 0$។<br>
+                    ឫសនៃសមីការ $x^2 - 4 = 0$ គឺ $x = -2$ និង $x = 2$។ តាមតារាងសញ្ញាដឺក្រេទីពីរ សញ្ញា $+$ នៅខាងក្រៅឫស។<br>
+                    នាំឱ្យដែនកំណត់ $D = (-\infty, -2) \cup (2, +\infty)$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$D = (-\infty, -2) \cup (2, +\infty)$**។
                 </div>
             </div>
 
             <div class="question-card" id="q13_box">
-                <div class="question-text">លំហាត់ ១៣. ក្នុងប្រអប់មួយមានឃ្លីក្រហម ៤ និងឃ្លីខៀវ ៦។ គេចាប់យកឃ្លី ១ ដោយចៃដន្យ។ រកប្រឡាបដើម្បីចាប់បានឃ្លីក្រហម។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៣. ដោះស្រាយសមីការអិចស្ប៉ូណង់ស្យែល៖ $3^{2x - 1} = 27$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q13" value="A"> $\frac{1}{4}$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="B" data-correct="true"> $\frac{2}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="C"> $\frac{3}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="D"> $\frac{1}{10}$</label>
+                    <label class="option-label"><input type="radio" name="q13" value="A"> $x = 1$</label>
+                    <label class="option-label"><input type="radio" name="q13" value="B"> $x = 3$</label>
+                    <label class="option-label"><input type="radio" name="q13" value="C" data-correct="true"> $x = 2$</label>
+                    <label class="option-label"><input type="radio" name="q13" value="D"> $x = 4$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    បំប្លែងគោលឱ្យដូចគ្នា៖ $27 = 3^3$ គេបានសមីការ $3^{2x - 1} = 3^3$<br>
+                    ទាញសន្ទស្សន៍ស្មើគ្នា៖ $2x - 1 = 3 \implies 2x = 4 \implies x = 2$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$x = 2$**។
                 </div>
             </div>
 
+            <!-- មេរៀន៖ ចំនួនកុំផ្លិច -->
             <div class="question-card" id="q14_box">
-                <div class="question-text">លំហាត់ ១៤. បោះគ្រាប់ឡុកឡាក់មួយគ្រាប់ដែលល្អស្មើជម្រុងចំនួន ១ ដង។ រកប្រូបាបដែលលោតចេញលេខជាចំនួនបឋម។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៤. រកទម្រង់ពិជគណិតនៃចំនួនកុំផ្លិច $Z = (2 + i)^2$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q14" value="A" data-correct="true"> $\frac{1}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="B"> $\frac{1}{3}$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="C"> $\frac{2}{3}$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="D"> $\frac{5}{6}$</label>
+                    <label class="option-label"><input type="radio" name="q14" value="A"> $Z = 4 + i$</label>
+                    <label class="option-label"><input type="radio" name="q14" value="B" data-correct="true"> $Z = 3 + 4i$</label>
+                    <label class="option-label"><input type="radio" name="q14" value="C"> $Z = 5 + 4i$</label>
+                    <label class="option-label"><input type="radio" name="q14" value="D"> $Z = 3 - 4i$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ប្រើរូបមន្តនព្វន្ធភាព៖ $(a+b)^2 = a^2 + 2ab + b^2$ ដោយដឹងថា $i^2 = -1$។<br>
+                    $Z = 2^2 + 2(2)(i) + i^2 = 4 + 4i - 1 = 3 + 4i$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$Z = 3 + 4i$**។
                 </div>
             </div>
 
             <div class="question-card" id="q15_box">
-                <div class="question-text">លំហាត់ ១៥. គេបោះកាក់មួយដ៏ល្អចំនួន ៣ ដង។ រកប្រូបាបដើម្បីឱ្យបោះបានមុខ "រូប" យ៉ាងតិចចំនួន ១ ដង។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៥. រកទម្រង់ត្រីកោណមាត្រនៃចំនួនកុំផ្លិច $Z = 1 + i\sqrt{3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q15" value="A"> $\frac{1}{8}$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="B"> $\frac{1}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="C" data-correct="true"> $\frac{7}{8}$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="D"> $\frac{3}{8}$</label>
+                    <label class="option-label"><input type="radio" name="q15" value="A" data-correct="true"> $Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$</label>
+                    <label class="option-label"><input type="radio" name="q15" value="B"> $Z = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$</label>
+                    <label class="option-label"><input type="radio" name="q15" value="C"> $Z = \sqrt{2}\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right)$</label>
+                    <label class="option-label"><input type="radio" name="q15" value="D"> $Z = 2\left(\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3}\right)$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    គណនាម៉ូឌុល៖ $r = |Z| = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = 2$ Tune។<br>
+                    រកអាគុយម៉ង់៖ $\cos\varphi = \frac{1}{2}$ និង $\sin\varphi = \frac{\sqrt{3}}{2} \implies \varphi = \frac{\pi}{3}$។<br>
+                    ទម្រង់ត្រីកោណមាត្រគឺ $Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$**។
                 </div>
             </div>
 
             <div class="question-card" id="q16_box">
-                <div class="question-text">លំហាត់ ១៦. គេឱ្យព្រឹត្តិការណ៍ពីរ $A$ និង $B$ ជាព្រឹត្តិការណ៍មិនទាក់ទងគ្នា ដែលមាន $P(A) = 0.3$ និង $P(B) = 0.4$។ គណនា $P(A \cap B)$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៦. ដោយប្រើរូបមន្តដឺម័រ (De Moivre's Theorem) គណនា $Z^{12}$ បើគេឱ្យ $Z = \cos\frac{\pi}{4} + i\sin\frac{\pi}{4}$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q16" value="A" data-correct="true"> $0.12$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="B"> $0.70$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="C"> $0.02$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="D"> $0.50$</label>
+                    <label class="option-label"><input type="radio" name="q16" value="A"> $1$</label>
+                    <label class="option-label"><input type="radio" name="q16" value="B"> $i$</label>
+                    <label class="option-label"><input type="radio" name="q16" value="C" data-correct="true"> $-1$</label>
+                    <label class="option-label"><input type="radio" name="q16" value="D"> $-i$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    តាមរូបមន្តដឺម័រ៖ $(\cos\varphi + i\sin\varphi)^n = \cos(n\varphi) + i\sin(n\varphi)$<br>
+                    $Z^{12} = \cos\left(12 \times \frac{\pi}{4}\right) + i\sin\left(12 \times \frac{\pi}{4}\right) = \cos(3\pi) + i\sin(3\pi)$<br>
+                    ដោយសារ $\cos(3\pi) = -1$ និង $\sin(3\pi) = 0$ នាំឱ្យ $Z^{12} = -1 + 0i = -1$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$-1$**។
                 </div>
             </div>
 
+            <!-- មេរៀន៖ អាំងតេក្រាល -->
             <div class="question-card" id="q17_box">
-                <div class="question-text">លំហាត់ ១៧. រកសមីការអាស៊ីមតូតឈរនៃក្រាបតាងអនុគមន៍ $y = \frac{3x - 1}{x - 2}$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៧. គណនាព្រីមីទីវ $F(x) = \int (3x^2 - 2x + 5) \, dx$ ដោយដឹងថា $F(0) = 4$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q17" value="A"> $y = 3$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="B"> $x = -2$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="C" data-correct="true"> $x = 2$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="D"> $y = 2$</label>
+                    <label class="option-label"><input type="radio" name="q17" value="A"> $F(x) = x^3 - x^2 + 5x$</label>
+                    <label class="option-label"><input type="radio" name="q17" value="B" data-correct="true"> $F(x) = x^3 - x^2 + 5x + 4$</label>
+                    <label class="option-label"><input type="radio" name="q17" value="C"> $F(x) = 6x - 2 + 4$</label>
+                    <label class="option-label"><input type="radio" name="q17" value="D"> $F(x) = x^3 - x^2 + 5x - 4$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    គណនាអាំងតេក្រាលមិនកំណត់៖ $F(x) = 3\left(\frac{x^3}{3}\right) - 2\left(\frac{x^2}{2}\right) + 5x + C = x^3 - x^2 + 5x + C$<br>
+                    រកថេរ $C$ តាមរយៈលក្ខខណ្ឌ $F(0) = 4 \implies 0^3 - 0^2 + 5(0) + C = 4 \implies C = 4$។<br>
+                    ដូចនេះ $F(x) = x^3 - x^2 + 5x + 4$។ ចម្លើយត្រឹមត្រូវគឺ **$F(x) = x^3 - x^2 + 5x + 4$**។
                 </div>
             </div>
 
             <div class="question-card" id="q18_box">
-                <div class="question-text">លំហាត់ ១៨. រកសមីការអាស៊ីមតូតដេកនៃក្រាបតាងអនុគមន៍ $y = \frac{4x^2 + 1}{2x^2 - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៨. គណនាអាំងតេក្រាលកំណត់៖ $\int_{0}^{1} e^{2x} \, dx$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q18" value="A"> $y = 4$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="B" data-correct="true"> $y = 2$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="C"> $x = 2$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="D"> គ្មានអាស៊ីមតូតដេក</label>
+                    <label class="option-label"><input type="radio" name="q18" value="A"> $e^2 - 1$</label>
+                    <label class="option-label"><input type="radio" name="q18" value="B"> $2(e^2 - 1)$</label>
+                    <label class="option-label"><input type="radio" name="q18" value="C" data-correct="true"> $\frac{e^2 - 1}{2}$</label>
+                    <label class="option-label"><input type="radio" name="q18" value="D"> $\frac{e^2}{2}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ព្រីមីទីវនៃ $e^{2x}$ គឺ $\frac{1}{2}e^{2x}$។ គណនាតាមរូបមន្តញូតុន-ឡែបនីត៖<br>
+                    $\int_{0}^{1} e^{2x} \, dx = \left[ \frac{1}{2}e^{2x} \right]_{0}^{1} = \frac{1}{2}e^{2(1)} - \frac{1}{2}e^{2(0)} = \frac{e^2 - 1}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{e^2 - 1}{2}$**។
                 </div>
             </div>
 
             <div class="question-card" id="q19_box">
-                <div class="question-text">លំហាត់ ១៩. រកកូអរដោនេចំណុចរបត់ (Inflection point) នៃក្រាបតាងអនុគមន៍ $y = x^3 - 3x^2 + 5$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ១៩. គណនាផ្ទៃក្រឡា $A$ នៃរូបបិទជិតខណ្ឌដោយខ្សែកោង $y = x^2$ អ័ក្សអាប់ស៊ីស បន្ទាត់ $x = 0$ និង $x = 3$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q19" value="A"> $(0, 5)$</label>
-                    <label class="option-label"><input type="radio" name="q19" value="B"> $(2, 1)$</label>
-                    <label class="option-label"><input type="radio" name="q19" value="C" data-correct="true"> $(1, 3)$</label>
-                    <label class="option-label"><input type="radio" name="q19" value="D"> $(1, 5)$</label>
+                    <label class="option-label"><input type="radio" name="q19" value="A" data-correct="true"> $9$ ឯកតាផ្ទៃ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="B"> $27$ ឯកតាផ្ទៃ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="C"> $3$ ឯកតាផ្ទៃ</label>
+                    <label class="option-label"><input type="radio" name="q19" value="D"> $6$ ឯកតាផ្ទៃ</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    រូបមន្តផ្ទៃក្រឡា៖ $A = \int_{0}^{3} x^2 \, dx$<br>
+                    គណនាអាំងតេក្រាល៖ $A = \left[ \frac{x^3}{3} \right]_{0}^{3} = \frac{3^3}{3} - \frac{0^3}{3} = \frac{27}{3} = 9$ ឯកតាផ្ទៃ។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$9$ ឯកតាផ្ទៃ**។
                 </div>
             </div>
 
+            <!-- មេរៀន៖ សមីការឌីផេរ៉ង់ស្យែល -->
             <div class="question-card" id="q20_box">
-                <div class="question-text">លំហាត់ ២០. រកបរមាតម្លៃនៃអនុគមន៍ $y = -x^2 + 4x + 1$។ តើអនុគមន៍នេះមានតម្លៃអតិបរមា ឬអប្បបរមាស្មើប៉ុន្មាន? <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="question-text">លំហាត់ ២០. ដោះស្រាយសមីការឌីផេរ៉ង់ស្យែលលីនេអ៊ែរលំដាប់ទី១៖ $y' - 3y = 0$ <span class="points">(៥ ពិន្ទុ)</span></div>
                 <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q20" value="A"> តម្លៃអប្បបរមាស្មើ $5$ ត្រង់ $x=2$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="B"> តម្លៃអតិបរមាស្មើ $1$ ត្រង់ $x=0$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="C" data-correct="true"> តម្លៃអតិបរមាស្មើ $5$ ត្រង់ $x=2$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="D"> តម្លៃអប្បបរមាស្មើ $1$ ត្រង់ $x=4$</label>
+                    <label class="option-label"><input type="radio" name="q20" value="A"> $y = K \cdot e^{-3x}$</label>
+                    <label class="option-label"><input type="radio" name="q20" value="B" data-correct="true"> $y = K \cdot e^{3x}$</label>
+                    <label class="option-label"><input type="radio" name="q20" value="C"> $y = 3x + K$</label>
+                    <label class="option-label"><input type="radio" name="q20" value="D"> $y = K \cdot x^3$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    សមីការមានទម្រង់ទូទៅ $y' - ay = 0$ ដែលមានចម្លើយទូទៅគឺ $y = K \cdot e^{ax}$ (ដែល $K$ ជាថេរ)។<br>
+                    ក្នុងលំហាត់នេះ $a = 3$ នាំឱ្យចម្លើយគឺ $y = K \cdot e^{3x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$y = K \cdot e^{3x}$**។
+                </div>
+            </div>
+
+            <div class="question-card" id="q21_box">
+                <div class="question-text">លំហាត់ ២១. រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែលលំដាប់ទី២៖ $y'' - 5y' + 6y = 0$ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="options-container">
+                    <label class="option-label"><input type="radio" name="q21" value="A"> $y = A \cdot e^{-2x} + B \cdot e^{-3x}$</label>
+                    <label class="option-label"><input type="radio" name="q21" value="B"> $y = A \cdot e^{5x} + B \cdot e^{6x}$</label>
+                    <label class="option-label"><input type="radio" name="q21" value="C" data-correct="true"> $y = A \cdot e^{2x} + B \cdot e^{3x}$</label>
+                    <label class="option-label"><input type="radio" name="q21" value="D"> $y = (Ax + B)e^{2x}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    សមីការសរខ្វះ (Characteristic Equation)៖ $r^2 - 5r + 6 = 0 \implies (r-2)(r-3) = 0 \implies r_1 = 2, r_2 = 3$។<br>
+                    ដោយសារមានឫសពីរផ្សេងគ្នា នាំឱ្យចម្លើយទូទៅគឺ $y = A \cdot e^{2x} + B \cdot e^{3x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$y = A \cdot e^{2x} + B \cdot e^{3x}$**។
+                </div>
+            </div>
+
+            <!-- មេរៀន៖ ប្រូបាប -->
+            <div class="question-card" id="q22_box">
+                <div class="question-text">លំហាត់ ២២. ក្នុងប្រអប់មួយមានឃ្លីក្រហម ៤ និងឃ្លីខៀវ ៦។ គេចាប់យកឃ្លី ១ ដោយចៃដន្យ។ រកប្រឡាបដើម្បីចាប់បានឃ្លីក្រហម។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="options-container">
+                    <label class="option-label"><input type="radio" name="q22" value="A"> $\frac{1}{4}$</label>
+                    <label class="option-label"><input type="radio" name="q22" value="B" data-correct="true"> $\frac{2}{5}$</label>
+                    <label class="option-label"><input type="radio" name="q22" value="C"> $\frac{3}{5}$</label>
+                    <label class="option-label"><input type="radio" name="q22" value="D"> $\frac{1}{10}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ចំនួនករណីអាច (ឃ្លីសរុប)៖ $4 + 6 = 10$<br>
+                    ចំនួនករណីស្រប (ឃ្លីក្រហម)៖ $4$<br>
+                    នាំឱ្យប្រូបាប $P = \frac{4}{10} = \frac{2}{5}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{2}{5}$**។
+                </div>
+            </div>
+
+            <div class="question-card" id="q23_box">
+                <div class="question-text">លំហាត់ ២៣. បោះគ្រាប់ឡុកឡាក់មួយគ្រាប់ដែលល្អស្មើជម្រុងចំនួន ១ ដង។ រកប្រូបាបដែលលោតចេញលេខជាចំនួនបឋម។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="options-container">
+                    <label class="option-label"><input type="radio" name="q23" value="A" data-correct="true"> $\frac{1}{2}$</label>
+                    <label class="option-label"><input type="radio" name="q23" value="B"> $\frac{1}{3}$</label>
+                    <label class="option-label"><input type="radio" name="q23" value="C"> $\frac{2}{3}$</label>
+                    <label class="option-label"><input type="radio" name="q23" value="D"> $\frac{5}{6}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    លំហសំណាកគ្រាប់ឡុកឡាក់៖ $S = \{1, 2, 3, 4, 5, 6\} \implies n(S) = 6$។<br>
+                    ព្រឹត្តិការណ៍ចេញលេខជាចំនួនបឋម៖ $A = \{2, 3, 5\} \implies n(A) = 3$។<br>
+                    នាំឱ្យប្រូបាប $P(A) = \frac{3}{6} = \frac{1}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{1}{2}$**។
+                </div>
+            </div>
+
+            <div class="question-card" id="q24_box">
+                <div class="question-text">លំហាត់ ២៤. គេបោះកាក់មួយដ៏ល្អចំនួន ៣ ដង។ រកប្រូបាបដើម្បីឱ្យបោះបានមុខ "រូប" យ៉ាងតិចចំនួន ១ ដង។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="options-container">
+                    <label class="option-label"><input type="radio" name="q24" value="A"> $\frac{1}{8}$</label>
+                    <label class="option-label"><input type="radio" name="q24" value="B"> $\frac{1}{2}$</label>
+                    <label class="option-label"><input type="radio" name="q24" value="C" data-correct="true"> $\frac{7}{8}$</label>
+                    <label class="option-label"><input type="radio" name="q24" value="D"> $\frac{3}{8}$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ចំនួនករណីអាចសរុបពេលបោះកាក់ ៣ ដង៖ $2^3 = 8$។<br>
+                    ប្រើព្រឹត្តិការណ៍បំពេញ៖ «បានមុខរូបយ៉ាងតិច ១ ដង» គឺផ្ទុយពី «មិនបានមុខរូបទាល់តែសោះ (គឺចេញលេខទាំង ៣ ដង លលល)»។<br>
+                    ករណីចេញលេខទាំង ៣ ដង មានតែ ១ ករណីគត់ $\implies$ ប្រូបាបចេញលេខទាំងអស់ $P(\bar{A}) = \frac{1}{8}$។<br>
+                    នាំឱ្យប្រូបាបដែលយើងចង់បានគឺ $P(A) = 1 - P(\bar{A}) = 1 - \frac{1}{8} = \frac{7}{8}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{7}{8}$**។
+                </div>
+            </div>
+
+            <div class="question-card" id="q25_box">
+                <div class="question-text">លំហាត់ ២៥. គេឱ្យព្រឹត្តិការណ៍ពីរ $A$ និង $B$ ជាព្រឹត្តិការណ៍មិនទាក់ទងគ្នា ដែលមាន $P(A) = 0.3$ និង $P(B) = 0.4$។ គណនា $P(A \cap B)$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+                <div class="options-container">
+                    <label class="option-label"><input type="radio" name="q25" value="A" data-correct="true"> $0.12$</label>
+                    <label class="option-label"><input type="radio" name="q25" value="B"> $0.70$</label>
+                    <label class="option-label"><input type="radio" name="q25" value="C"> $0.02$</label>
+                    <label class="option-label"><input type="radio" name="q25" value="D"> $0.50$</label>
+                </div>
+                <div class="solution-box">
+                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+                    ដោយសារព្រឹត្តិការណ៍ $A$ និង $B$ មិនទាក់ទងគ្នា (Independent Events) តាមរូបមន្តផលគុណប្រូបាបគេបាន៖<br>
+                    $P(A \cap B) = P(A) \times P(B) = 0.3 \times 0.4 = 0.12$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$0.12$**។
                 </div>
             </div>
 
@@ -455,7 +672,7 @@
     </div>
 
     <script>
-        // មុខងារ លាយចម្លើយ (Shuffle Options) ពេលបើកទំព័រភ្លាម
+        // មុខងារលាយចម្លើយ (Shuffle Options)
         window.addEventListener('DOMContentLoaded', () => {
             const containers = document.querySelectorAll('.options-container');
             containers.forEach(container => {
@@ -467,7 +684,8 @@
             });
         });
 
-        let totalTime = 60 * 60; 
+        // រៀបចំម៉ោង ១៥០ នាទី
+        let totalTime = 150 * 60; 
         const timeDisplay = document.getElementById('timeDisplay');
         
         const timerInterval = setInterval(() => {
@@ -483,12 +701,12 @@
             }
         }, 1000);
 
-        // តារាងគ្រាប់ចុចចម្លើយត្រូវតាមឈុតលំហាត់ទី១២ថ្មី
         const correctAnswers = {
             q1: "B", q2: "A", q3: "C", q4: "C", q5: "A",
-            q6: "B", q7: "C", q8: "B", q9: "A", q10: "B",
-            q11: "A", q12: "B", q13: "B", q14: "A", q15: "C",
-            q16: "A", q17: "C", q18: "B", q19: "C", q20: "C"
+            q6: "B", q7: "A", q8: "A", q9: "C", q10: "B",
+            q11: "C", q12: "B", q13: "C", q14: "B", q15: "A",
+            q16: "C", q17: "B", q18: "C", q19: "A", q20: "B",
+            q21: "C", q22: "B", q23: "A", q24: "C", q25: "A"
         };
 
         function submitExam() {
@@ -504,10 +722,11 @@
             let score = 0;
             const form = document.getElementById('quizForm');
 
-            for (let i = 1; i <= 20; i++) {
+            for (let i = 1; i <= 25; i++) {
                 const qName = `q${i}`;
                 const cardId = `q${i}_box`;
-                const container = document.querySelector(`#${cardId} .options-container`);
+                const cardElement = document.getElementById(cardId);
+                const container = cardElement.querySelector('.options-container');
                 const selectedInput = form.elements[qName].value;
                 
                 const correctInput = container.querySelector('input[data-correct="true"]');
@@ -518,15 +737,21 @@
                 if (selectedInput === correctAnswers[qName]) {
                     score += 5;
                 } else {
-                    document.getElementById(cardId).classList.add('incorrect-flash');
+                    cardElement.classList.add('incorrect-flash');
+                }
+
+                const solutionBox = cardElement.querySelector('.solution-box');
+                if (solutionBox) {
+                    solutionBox.style.display = 'block';
                 }
             }
 
             document.getElementById('studentResultName').textContent = `សិស្សឈ្មោះ៖ ${name} | ថ្នាក់៖ ${className}`;
             document.getElementById('scoreDisplay').textContent = score;
             
-            let minutesSpent = 59 - Math.floor(totalTime / 60);
-            let secondsSpent = 60 - (totalTime % 60);
+            let timeSpent = (150 * 60) - totalTime;
+            let minutesSpent = Math.floor(timeSpent / 60);
+            let secondsSpent = timeSpent % 60;
             document.getElementById('timeSpentDisplay').textContent = `រយៈពេលប្រើប្រាស់៖ ${minutesSpent} នាទី ${secondsSpent} វិនាទី`;
 
             document.getElementById('resultBox').style.display = 'block';
