@@ -3,769 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>វិញ្ញាសាប្រឡងអនឡាញ - គណិតវិទ្យាថ្នាក់ទី១២</title>
+    <title>ប្រព័ន្ធផ្ទុកសំណួរអំពីសីលនិងចេតសិក</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&family=Moul&display=swap');
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            --secondary-color: #2563eb;
+            --accent-color: #3b82f6;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --card-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.05), 0 8px 16px -6px rgba(2, 6, 23, 0.05);
+            --hover-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
+        }
 
         body {
             font-family: 'Kantumruy Pro', sans-serif;
-            background-color: #f4f6f9;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
-            color: #2c3e50;
-        }
-
-        .exam-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 3px double #34495e;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        .kingdom {
-            font-family: 'Moul', sans-serif;
-            font-size: 16px;
-            margin: 0 0 5px 0;
-        }
-
-        .exam-title {
-            font-family: 'Moul', sans-serif;
-            font-size: 18px;
-            color: #c0392b;
-            margin: 15px 0 5px 0;
-        }
-
-        .author {
-            font-size: 14px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .student-info-box {
-            background-color: #eef2f7;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .input-group {
+            padding: 0;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
-        .input-group label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .input-group input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 14px;
-        }
-
-        .sticky-bar {
-            position: sticky;
-            top: 10px;
-            background: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            z-index: 1000;
-            border-left: 5px solid #2980b9;
-        }
-
-        .timer {
-            font-weight: bold;
-            color: #c0392b;
-            font-size: 16px;
-        }
-
-        .question-card {
-            background: #fff;
-            border: 1px solid #e1e8ed;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .question-card:hover {
-            border-color: #3498db;
-        }
-
-        .question-text {
-            font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 15px;
-            color: #1a365d;
-            line-height: 1.8;
-        }
-
-        .points {
-            font-size: 12px;
-            color: #7f8c8d;
-            font-weight: normal;
-        }
-
-        .options-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .options-container { grid-template-columns: 1fr; }
-            .student-info-box { grid-template-columns: 1fr; }
-        }
-
-        .option-label {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .option-label:hover {
-            background: #e2e8f0;
-        }
-
-        .option-label input {
-            margin-right: 12px;
-            transform: scale(1.2);
-            cursor: pointer;
-        }
-
-        .solution-box {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f0f7ff;
-            border-left: 4px solid #3498db;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        .solution-title {
-            font-weight: bold;
-            color: #2980b9;
-            margin-bottom: 5px;
-        }
-
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #27ae60;
+        header {
+            background: var(--primary-gradient);
             color: white;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Kantumruy Pro', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(39, 174, 96, 0.2);
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #219653;
-        }
-
-        .result-box {
-            display: none;
-            background: #e8f8f5;
-            border: 2px solid #2ecc71;
-            padding: 25px;
-            border-radius: 8px;
             text-align: center;
-            margin-bottom: 25px;
+            padding: 50px 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
         }
 
-        .result-title {
-            font-family: 'Moul', sans-serif;
-            color: #27ae60;
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #3b82f6);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            margin: 12px 0 0 0;
+            font-size: 15px;
+            opacity: 0.85;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1000px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .lesson-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* បង្កើតលេខសម្គាល់តូចៗនៅជ្រុង Card */
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .lesson-card:hover::before {
+            background: var(--secondary-color);
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: #f8fafc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+
+        .lesson-card:hover .icon-wrapper {
+            background: #eff6ff;
+            transform: scale(1.05);
+        }
+
+        .icon {
+            font-size: 34px;
+        }
+
+        .class-title {
             font-size: 18px;
-            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 4px 0 0 0;
+            transition: color 0.2s ease;
         }
 
-        .correct-flash { background: #d4edda !important; border-color: #28a745 !important; font-weight: bold; }
-        .incorrect-flash { background: #f8d7da !important; border-color: #dc3545 !important; }
+        .lesson-card:hover .class-title {
+            color: var(--secondary-color);
+        }
+
+        .btn-view {
+            margin-top: 16px;
+            font-size: 13px;
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            width: 60%;
+        }
+
+        .lesson-card:hover .btn-view {
+            background: var(--secondary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid #e2e8f0;
+            background: white;
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="exam-container">
-        <div class="header">
-            <div class="kingdom">ព្រះរាជាណាចក្រកម្ពុជា</div>
-            <div class="kingdom" style="font-size: 13px;">ជាតិ សាសនា ព្រះមហាក្សត្រ</div>
-            <div class="exam-title">វិញ្ញាសាប្រឡងអនឡាញ គណិតវិទ្យាថ្នាក់ទី១២</div>
-            <div class="author">រៀបរៀងដោយ៖ លោកគ្រូ រស់ មករា</div>
+    <header>
+        <h1>📚 កម្រងសំណួរអំពីសីលនិងចេតសិក</h1>
+        <p>សូមជ្រើសរើសប្រព័ន្ធវិញ្ញាសាខាងក្រោម ដើម្បីចាប់ផ្ដើមធ្វើតេស្ត</p>
+    </header>
+
+    <main>
+        <div class="grid-container">
+            <a href="1.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="2.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ២</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="3.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៣</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="4.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៤</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="5.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៥</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="6.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៦</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="7.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៧</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="8.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៨</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="9.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ៩</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="10.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១០</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="11.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១១</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="12.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១២</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="13.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១៣</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="14.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១៤</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="15.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១៥</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
+
+            <a href="16.html" class="lesson-card">
+                <div class="icon-wrapper"><div class="icon">📝</div></div>
+                <h2 class="class-title">វិញ្ញាសាទី ១៦</h2>
+                <div class="btn-view">ចូលមើល</div>
+            </a>
         </div>
+    </main>
 
-        <div class="student-info-box" id="infoBox">
-            <div class="input-group">
-                <label for="studentName">នាមត្រកូល និងនាមខ្លួនសិស្ស *</label>
-                <input type="text" id="studentName" placeholder="ឧទាហរណ៍៖ សុខ ភា" required>
-            </div>
-            <div class="input-group">
-                <label for="studentClass">ថ្នាក់/បន្ទប់ *</label>
-                <input type="text" id="studentClass" placeholder="ឧទាហរណ៍៖ ១២ A" required>
-            </div>
-        </div>
+    <footer>
+        &copy; 2026 gemini។
+    </footer>
 
-        <div class="sticky-bar">
-            <div class="timer">ម៉ោងរាប់ថយក្រោយ៖ <span id="timeDisplay">១៥០:០០</span></div>
-            <div style="font-weight: bold;">ពិន្ទុរុបរួម៖ ១២៥</div>
-        </div>
-
-        <div class="result-box" id="resultBox">
-            <div class="result-title">លទ្ធផលប្រឡងទទួលបាន</div>
-            <p id="studentResultName" style="font-weight: bold;"></p>
-            <p style="font-size: 24px; color: #c0392b; font-weight: bold;">ពិន្ទុ៖ <span id="scoreDisplay">0</span> / ១២៥</p>
-            <p id="timeSpentDisplay" style="font-style: italic; color: #7f8c8d;"></p>
-            <p style="color: #2980b9; font-weight: bold; margin-top: 10px;">👇 សូមពិនិត្យមើលដំណោះស្រាយលម្អិតនៅខាងក្រោមលំហាត់នីមួយៗ!</p>
-        </div>
-
-        <form id="quizForm">
-            
-            <!-- មេរៀន៖ លីមីត និងភាពជាប់ -->
-            <div class="question-card" id="q1_box">
-                <div class="question-text">លំហាត់ ១. គណនាលីមីតរាងមិនកំណត់ $\frac{0}{0}$៖ $\lim_{x \to 2} \frac{x^2 - 5x + 6}{x - 2}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q1" value="A"> $1$</label>
-                    <label class="option-label"><input type="radio" name="q1" value="B" data-correct="true"> $-1$</label>
-                    <label class="option-label"><input type="radio" name="q1" value="C"> $0$</label>
-                    <label class="option-label"><input type="radio" name="q1" value="D"> $2$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ដាក់ភាគយកជាផលគុណកត្តា៖ $x^2 - 5x + 6 = (x - 2)(x - 3)$<br>
-                    សម្រួលកត្តាខុសពីសូន្យ $(x - 2)$ ចោល៖ $\lim_{x \to 2} \frac{(x-2)(x-3)}{x-2} = \lim_{x \to 2} (x - 3)$<br>
-                    ជំនួសតម្លៃ $x = 2$ ចូល៖ $2 - 3 = -1$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$-1$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q2_box">
-                <div class="question-text">លំហាត់ ២. គណនាលីមីតរាងអនន្តលើអនន្ត $\frac{\infty}{\infty}$៖ $\lim_{x \to \infty} \frac{3x^2 - 4x + 1}{2x^2 + 5}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q2" value="A" data-correct="true"> $\frac{3}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q2" value="B"> $3$</label>
-                    <label class="option-label"><input type="radio" name="q2" value="C"> $\frac{1}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q2" value="D"> $\infty$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ទាញតួដែលមានដឺក្រេខ្ពស់ជាងគេនៅភាគយក និងភាគបែងជាកត្តារួម៖<br>
-                    $\lim_{x \to \infty} \frac{x^2\left(3 - \frac{4}{x} + \frac{1}{x^2}\right)}{x^2\left(2 + \frac{5}{x^2}\right)} = \lim_{x \to \infty} \frac{3 - \frac{4}{x} + \frac{1}{x^2}}{2 + \frac{5}{x^2}}$<br>
-                    ដោយសារកាលណា $x \to \infty$ នោះ $\frac{4}{x}, \frac{1}{x^2}, \frac{5}{x^2} \to 0$ គេបានលទ្ធផល $\frac{3}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{3}{2}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q3_box">
-                <div class="question-text">លំហាត់ ៣. គណនាលីមីតត្រីកោណមាត្រ៖ $\lim_{x \to 0} \frac{\sin 5x}{2x}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q3" value="A"> $1$</label>
-                    <label class="option-label"><input type="radio" name="q3" value="B"> $\frac{2}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q3" value="C" data-correct="true"> $\frac{5}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q3" value="D"> $0$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ប្រើរូបមន្តគ្រឹះ $\lim_{u \to 0} \frac{\sin u}{u} = 1$។<br>
-                    យើងសរសេរលីមីតឡើងវិញ៖ $\lim_{x \to 0} \frac{\sin 5x}{5x} \times \frac{5}{2} = 1 \times \frac{5}{2} = \frac{5}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{5}{2}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q4_box">
-                <div class="question-text">លំហាត់ ៤. គណនាលីមីតទាក់ទងនឹងចំនួន $e$៖ $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^{3x}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q4" value="A"> $e$</label>
-                    <label class="option-label"><input type="radio" name="q4" value="B"> $e^{-3}$</label>
-                    <label class="option-label"><input type="radio" name="q4" value="C" data-correct="true"> $e^3$</label>
-                    <label class="option-label"><input type="radio" name="q4" value="D"> $1$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ប្រើរូបមន្តគ្រឹះ $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$។<br>
-                    សរសេរបំបែកសន្ទស្សន៍៖ $\lim_{x \to \infty} \left[\left(1 + \frac{1}{x}\right)^x\right]^3 = e^3$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$e^3$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q5_box">
-                <div class="question-text">លំហាត់ ៥. ដើម្បីឱ្យអនុគមន៍ $f(x) = \begin{cases} \frac{x^2 - 1}{x - 1} & \text{បើ } x \neq 1 \\ k & \text{បើ } x = 1 \end{cases}$ ជាប់ត្រង់ $x_0 = 1$ តើ $k$ ត្រូវមានតម្លៃស្មើប៉ុន្មាន? <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q5" value="A" data-correct="true"> $2$</label>
-                    <label class="option-label"><input type="radio" name="q5" value="B"> $1$</label>
-                    <label class="option-label"><input type="radio" name="q5" value="C"> $0$</label>
-                    <label class="option-label"><input type="radio" name="q5" value="D"> $-2$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ដើម្បីឱ្យអនុគមន៍ជាប់ត្រង់ $x_0 = 1$ លុះត្រាតែ $\lim_{x \to 1} f(x) = f(1)$។<br>
-                    គណនាលីមីត៖ $\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1} \frac{(x-1)(x+1)}{x-1} = \lim_{x \to 1} (x+1) = 1 + 1 = 2$។<br>
-                    ដោយសារ $f(1) = k$ នាំឱ្យ $k = 2$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$2$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ ដេរីវេ និងការអនុវត្ត -->
-            <div class="question-card" id="q6_box">
-                <div class="question-text">លំហាត់ ៦. គណនាដេរីវេនៃអនុគមន៍ $f(x) = (3x^2 - 5x + 2)^4$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q6" value="A"> $4(3x^2 - 5x + 2)^3$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="B" data-correct="true"> $4(6x - 5)(3x^2 - 5x + 2)^3$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="C"> $(6x - 5)^4$</label>
-                    <label class="option-label"><input type="radio" name="q6" value="D"> $12x(3x^2 - 5x + 2)^3$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ប្រើរូបមន្តដេរីវេអនុគមន៍បណ្តាក់៖ $(u^n)' = n \cdot u' \cdot u^{n-1}$<br>
-                    ក្នុងនេះ $u = 3x^2 - 5x + 2 \implies u' = 6x - 5$ និង $n = 4$។<br>
-                    គេបាន $f'(x) = 4(6x - 5)(3x^2 - 5x + 2)^3$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$4(6x - 5)(3x^2 - 5x + 2)^3$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q7_box">
-                <div class="question-text">លំហាត់ ៧. រករូបមន្តដេរីវេនៃអនុគមន៍ផលចែក $f(x) = \frac{2x + 1}{x - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q7" value="A" data-correct="true"> $f'(x) = \frac{-7}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="B"> $f'(x) = \frac{7}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="C"> $f'(x) = \frac{2}{(x-3)^2}$</label>
-                    <label class="option-label"><input type="radio" name="q7" value="D"> $f'(x) = 2$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ប្រើរូបមន្តដេរីវេផលចែក៖ $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$<br>
-                    $f'(x) = \frac{(2x+1)'(x-3) - (2x+1)(x-3)'}{(x-3)^2} = \frac{2(x-3) - (2x+1)(1)}{(x-3)^2} = \frac{2x - 6 - 2x - 1}{(x-3)^2} = \frac{-7}{(x-3)^2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$f'(x) = \frac{-7}{(x-3)^2}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q8_box">
-                <div class="question-text">លំហាត់ ៨. គណនាដេរីវេទីពីរ $f''(x)$ នៃអនុគមន៍ $f(x) = x \cdot \ln x$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q8" value="A" data-correct="true"> $f''(x) = \frac{1}{x}$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="B"> $f''(x) = \ln x + 1$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="C"> $f''(x) = 1$</label>
-                    <label class="option-label"><input type="radio" name="q8" value="D"> $f''(x) = -\frac{1}{x^2}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    គណនាដេរីវេទី១ តាមរូបមន្ត $(uv)' = u'v + uv'$៖<br>
-                    $f'(x) = (x)'\ln x + x(\ln x)' = 1 \cdot \ln x + x \cdot \frac{1}{x} = \ln x + 1$<br>
-                    គណនាដេរីវេទី២៖ $f''(x) = (\ln x + 1)' = \frac{1}{x} + 0 = \frac{1}{x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{1}{x}$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ ក្រាបនៃអនុគមន៍ -->
-            <div class="question-card" id="q9_box">
-                <div class="question-text">លំហាត់ ៩. រកសមីការអាស៊ីមតូតឈរនៃក្រាបតាងអនុគមន៍ $y = \frac{3x - 1}{x - 2}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q9" value="A"> $y = 3$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="B"> $x = -2$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="C" data-correct="true"> $x = 2$</label>
-                    <label class="option-label"><input type="radio" name="q9" value="D"> $y = 2$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    អាស៊ីមតូតឈរកើតឡើងត្រង់តម្លៃដែលធ្វើឱ្យភាគបែងសូន្យ និងភាគយកខុសពីសូន្យ។<br>
-                    ឱ្យភាគបែង $x - 2 = 0 \implies x = 2$។ ដោយសារ $\lim_{x \to 2} y = \infty$ នាំឱ្យ $x = 2$ ជាសមីការអាស៊ីមតូតឈរ។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$x = 2$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q10_box">
-                <div class="question-text">លំហាត់ ១០. រកសមីការអាស៊ីមតូតដេកនៃក្រាបតាងអនុគមន៍ $y = \frac{4x^2 + 1}{2x^2 - 3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q10" value="A"> $y = 4$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="B" data-correct="true"> $y = 2$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="C"> $x = 2$</label>
-                    <label class="option-label"><input type="radio" name="q10" value="D"> គ្មានអាស៊ីមតូតដេក</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    អាស៊ីមតូតដេករកបានតាមរយៈគណនាលីមីតអនុគមន៍កាលណា $x \to \infty$៖<br>
-                    $\lim_{x \to \infty} \frac{4x^2 + 1}{2x^2 - 3} = \frac{4}{2} = 2$។ ដូចនេះបន្ទាត់ $y = 2$ ជាអាស៊ីមតូតដេក។ ចម្លើយត្រឹមត្រូវគឺ **$y = 2$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q11_box">
-                <div class="question-text">លំហាត់ ១១. រកកូអរដោនេចំណុចរបត់ (Inflection point) នៃក្រាបតាងអនុគមន៍ $y = x^3 - 3x^2 + 5$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q11" value="A"> $(0, 5)$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="B"> $(2, 1)$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="C" data-correct="true"> $(1, 3)$</label>
-                    <label class="option-label"><input type="radio" name="q11" value="D"> $(1, 5)$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    រកចំណុចរបត់តាមរយៈដេរីវេទីពីរ $y'' = 0$៖<br>
-                    $y' = 3x^2 - 6x \implies y'' = 6x - 6$<br>
-                    ឱ្យ $y'' = 0 \implies 6x - 6 = 0 \implies x = 1$។<br>
-                    ជំនួស $x = 1$ ក្នុងអនុគមន៍ដើម៖ $y = (1)^3 - 3(1)^2 + 5 = 1 - 3 + 5 = 3$។ ដូចនេះចំណុចរបត់គឺ **$(1, 3)$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ អនុគមន៍អិចស្ប៉ូណង់ស្យែល និងឡូការីត -->
-            <div class="question-card" id="q12_box">
-                <div class="question-text">លំហាត់ ១២. រកដែនកំណត់នៃអនុគមន៍ $f(x) = \ln(x^2 - 4)$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q12" value="A"> $D = (-2, 2)$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="B" data-correct="true"> $D = (-\infty, -2) \cup (2, +\infty)$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="C"> $D = \mathbb{R} \setminus \{-2, 2\}$</label>
-                    <label class="option-label"><input type="radio" name="q12" value="D"> $D = (2, +\infty)$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    អនុគមន៍ឡូការីតនេពែមានន័យលុះត្រាតែកន្សោមខាងក្នុងធំជាងសូន្យដាច់៖ $x^2 - 4 > 0$។<br>
-                    ឫសនៃសមីការ $x^2 - 4 = 0$ គឺ $x = -2$ និង $x = 2$។ តាមតារាងសញ្ញាដឺក្រេទីពីរ សញ្ញា $+$ នៅខាងក្រៅឫស។<br>
-                    នាំឱ្យដែនកំណត់ $D = (-\infty, -2) \cup (2, +\infty)$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$D = (-\infty, -2) \cup (2, +\infty)$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q13_box">
-                <div class="question-text">លំហាត់ ១៣. ដោះស្រាយសមីការអិចស្ប៉ូណង់ស្យែល៖ $3^{2x - 1} = 27$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q13" value="A"> $x = 1$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="B"> $x = 3$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="C" data-correct="true"> $x = 2$</label>
-                    <label class="option-label"><input type="radio" name="q13" value="D"> $x = 4$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    បំប្លែងគោលឱ្យដូចគ្នា៖ $27 = 3^3$ គេបានសមីការ $3^{2x - 1} = 3^3$<br>
-                    ទាញសន្ទស្សន៍ស្មើគ្នា៖ $2x - 1 = 3 \implies 2x = 4 \implies x = 2$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$x = 2$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ ចំនួនកុំផ្លិច -->
-            <div class="question-card" id="q14_box">
-                <div class="question-text">លំហាត់ ១៤. រកទម្រង់ពិជគណិតនៃចំនួនកុំផ្លិច $Z = (2 + i)^2$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q14" value="A"> $Z = 4 + i$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="B" data-correct="true"> $Z = 3 + 4i$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="C"> $Z = 5 + 4i$</label>
-                    <label class="option-label"><input type="radio" name="q14" value="D"> $Z = 3 - 4i$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ប្រើរូបមន្តនព្វន្ធភាព៖ $(a+b)^2 = a^2 + 2ab + b^2$ ដោយដឹងថា $i^2 = -1$។<br>
-                    $Z = 2^2 + 2(2)(i) + i^2 = 4 + 4i - 1 = 3 + 4i$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$Z = 3 + 4i$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q15_box">
-                <div class="question-text">លំហាត់ ១៥. រកទម្រង់ត្រីកោណមាត្រនៃចំនួនកុំផ្លិច $Z = 1 + i\sqrt{3}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q15" value="A" data-correct="true"> $Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="B"> $Z = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="C"> $Z = \sqrt{2}\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right)$</label>
-                    <label class="option-label"><input type="radio" name="q15" value="D"> $Z = 2\left(\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3}\right)$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    គណនាម៉ូឌុល៖ $r = |Z| = \sqrt{1^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = 2$ Tune។<br>
-                    រកអាគុយម៉ង់៖ $\cos\varphi = \frac{1}{2}$ និង $\sin\varphi = \frac{\sqrt{3}}{2} \implies \varphi = \frac{\pi}{3}$។<br>
-                    ទម្រង់ត្រីកោណមាត្រគឺ $Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$Z = 2\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q16_box">
-                <div class="question-text">លំហាត់ ១៦. ដោយប្រើរូបមន្តដឺម័រ (De Moivre's Theorem) គណនា $Z^{12}$ បើគេឱ្យ $Z = \cos\frac{\pi}{4} + i\sin\frac{\pi}{4}$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q16" value="A"> $1$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="B"> $i$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="C" data-correct="true"> $-1$</label>
-                    <label class="option-label"><input type="radio" name="q16" value="D"> $-i$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    តាមរូបមន្តដឺម័រ៖ $(\cos\varphi + i\sin\varphi)^n = \cos(n\varphi) + i\sin(n\varphi)$<br>
-                    $Z^{12} = \cos\left(12 \times \frac{\pi}{4}\right) + i\sin\left(12 \times \frac{\pi}{4}\right) = \cos(3\pi) + i\sin(3\pi)$<br>
-                    ដោយសារ $\cos(3\pi) = -1$ និង $\sin(3\pi) = 0$ នាំឱ្យ $Z^{12} = -1 + 0i = -1$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$-1$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ អាំងតេក្រាល -->
-            <div class="question-card" id="q17_box">
-                <div class="question-text">លំហាត់ ១៧. គណនាព្រីមីទីវ $F(x) = \int (3x^2 - 2x + 5) \, dx$ ដោយដឹងថា $F(0) = 4$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q17" value="A"> $F(x) = x^3 - x^2 + 5x$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="B" data-correct="true"> $F(x) = x^3 - x^2 + 5x + 4$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="C"> $F(x) = 6x - 2 + 4$</label>
-                    <label class="option-label"><input type="radio" name="q17" value="D"> $F(x) = x^3 - x^2 + 5x - 4$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    គណនាអាំងតេក្រាលមិនកំណត់៖ $F(x) = 3\left(\frac{x^3}{3}\right) - 2\left(\frac{x^2}{2}\right) + 5x + C = x^3 - x^2 + 5x + C$<br>
-                    រកថេរ $C$ តាមរយៈលក្ខខណ្ឌ $F(0) = 4 \implies 0^3 - 0^2 + 5(0) + C = 4 \implies C = 4$។<br>
-                    ដូចនេះ $F(x) = x^3 - x^2 + 5x + 4$។ ចម្លើយត្រឹមត្រូវគឺ **$F(x) = x^3 - x^2 + 5x + 4$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q18_box">
-                <div class="question-text">លំហាត់ ១៨. គណនាអាំងតេក្រាលកំណត់៖ $\int_{0}^{1} e^{2x} \, dx$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q18" value="A"> $e^2 - 1$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="B"> $2(e^2 - 1)$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="C" data-correct="true"> $\frac{e^2 - 1}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q18" value="D"> $\frac{e^2}{2}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ព្រីមីទីវនៃ $e^{2x}$ គឺ $\frac{1}{2}e^{2x}$។ គណនាតាមរូបមន្តញូតុន-ឡែបនីត៖<br>
-                    $\int_{0}^{1} e^{2x} \, dx = \left[ \frac{1}{2}e^{2x} \right]_{0}^{1} = \frac{1}{2}e^{2(1)} - \frac{1}{2}e^{2(0)} = \frac{e^2 - 1}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{e^2 - 1}{2}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q19_box">
-                <div class="question-text">លំហាត់ ១៩. គណនាផ្ទៃក្រឡា $A$ នៃរូបបិទជិតខណ្ឌដោយខ្សែកោង $y = x^2$ អ័ក្សអាប់ស៊ីស បន្ទាត់ $x = 0$ និង $x = 3$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q19" value="A" data-correct="true"> $9$ ឯកតាផ្ទៃ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="B"> $27$ ឯកតាផ្ទៃ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="C"> $3$ ឯកតាផ្ទៃ</label>
-                    <label class="option-label"><input type="radio" name="q19" value="D"> $6$ ឯកតាផ្ទៃ</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    រូបមន្តផ្ទៃក្រឡា៖ $A = \int_{0}^{3} x^2 \, dx$<br>
-                    គណនាអាំងតេក្រាល៖ $A = \left[ \frac{x^3}{3} \right]_{0}^{3} = \frac{3^3}{3} - \frac{0^3}{3} = \frac{27}{3} = 9$ ឯកតាផ្ទៃ។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$9$ ឯកតាផ្ទៃ**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ សមីការឌីផេរ៉ង់ស្យែល -->
-            <div class="question-card" id="q20_box">
-                <div class="question-text">លំហាត់ ២០. ដោះស្រាយសមីការឌីផេរ៉ង់ស្យែលលីនេអ៊ែរលំដាប់ទី១៖ $y' - 3y = 0$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q20" value="A"> $y = K \cdot e^{-3x}$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="B" data-correct="true"> $y = K \cdot e^{3x}$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="C"> $y = 3x + K$</label>
-                    <label class="option-label"><input type="radio" name="q20" value="D"> $y = K \cdot x^3$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    សមីការមានទម្រង់ទូទៅ $y' - ay = 0$ ដែលមានចម្លើយទូទៅគឺ $y = K \cdot e^{ax}$ (ដែល $K$ ជាថេរ)។<br>
-                    ក្នុងលំហាត់នេះ $a = 3$ នាំឱ្យចម្លើយគឺ $y = K \cdot e^{3x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$y = K \cdot e^{3x}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q21_box">
-                <div class="question-text">លំហាត់ ២១. រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែលលំដាប់ទី២៖ $y'' - 5y' + 6y = 0$ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q21" value="A"> $y = A \cdot e^{-2x} + B \cdot e^{-3x}$</label>
-                    <label class="option-label"><input type="radio" name="q21" value="B"> $y = A \cdot e^{5x} + B \cdot e^{6x}$</label>
-                    <label class="option-label"><input type="radio" name="q21" value="C" data-correct="true"> $y = A \cdot e^{2x} + B \cdot e^{3x}$</label>
-                    <label class="option-label"><input type="radio" name="q21" value="D"> $y = (Ax + B)e^{2x}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    សមីការសរខ្វះ (Characteristic Equation)៖ $r^2 - 5r + 6 = 0 \implies (r-2)(r-3) = 0 \implies r_1 = 2, r_2 = 3$។<br>
-                    ដោយសារមានឫសពីរផ្សេងគ្នា នាំឱ្យចម្លើយទូទៅគឺ $y = A \cdot e^{2x} + B \cdot e^{3x}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$y = A \cdot e^{2x} + B \cdot e^{3x}$**។
-                </div>
-            </div>
-
-            <!-- មេរៀន៖ ប្រូបាប -->
-            <div class="question-card" id="q22_box">
-                <div class="question-text">លំហាត់ ២២. ក្នុងប្រអប់មួយមានឃ្លីក្រហម ៤ និងឃ្លីខៀវ ៦។ គេចាប់យកឃ្លី ១ ដោយចៃដន្យ។ រកប្រឡាបដើម្បីចាប់បានឃ្លីក្រហម។ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q22" value="A"> $\frac{1}{4}$</label>
-                    <label class="option-label"><input type="radio" name="q22" value="B" data-correct="true"> $\frac{2}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q22" value="C"> $\frac{3}{5}$</label>
-                    <label class="option-label"><input type="radio" name="q22" value="D"> $\frac{1}{10}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ចំនួនករណីអាច (ឃ្លីសរុប)៖ $4 + 6 = 10$<br>
-                    ចំនួនករណីស្រប (ឃ្លីក្រហម)៖ $4$<br>
-                    នាំឱ្យប្រូបាប $P = \frac{4}{10} = \frac{2}{5}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{2}{5}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q23_box">
-                <div class="question-text">លំហាត់ ២៣. បោះគ្រាប់ឡុកឡាក់មួយគ្រាប់ដែលល្អស្មើជម្រុងចំនួន ១ ដង។ រកប្រូបាបដែលលោតចេញលេខជាចំនួនបឋម។ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q23" value="A" data-correct="true"> $\frac{1}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q23" value="B"> $\frac{1}{3}$</label>
-                    <label class="option-label"><input type="radio" name="q23" value="C"> $\frac{2}{3}$</label>
-                    <label class="option-label"><input type="radio" name="q23" value="D"> $\frac{5}{6}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    លំហសំណាកគ្រាប់ឡុកឡាក់៖ $S = \{1, 2, 3, 4, 5, 6\} \implies n(S) = 6$។<br>
-                    ព្រឹត្តិការណ៍ចេញលេខជាចំនួនបឋម៖ $A = \{2, 3, 5\} \implies n(A) = 3$។<br>
-                    នាំឱ្យប្រូបាប $P(A) = \frac{3}{6} = \frac{1}{2}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{1}{2}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q24_box">
-                <div class="question-text">លំហាត់ ២៤. គេបោះកាក់មួយដ៏ល្អចំនួន ៣ ដង។ រកប្រូបាបដើម្បីឱ្យបោះបានមុខ "រូប" យ៉ាងតិចចំនួន ១ ដង។ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q24" value="A"> $\frac{1}{8}$</label>
-                    <label class="option-label"><input type="radio" name="q24" value="B"> $\frac{1}{2}$</label>
-                    <label class="option-label"><input type="radio" name="q24" value="C" data-correct="true"> $\frac{7}{8}$</label>
-                    <label class="option-label"><input type="radio" name="q24" value="D"> $\frac{3}{8}$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ចំនួនករណីអាចសរុបពេលបោះកាក់ ៣ ដង៖ $2^3 = 8$។<br>
-                    ប្រើព្រឹត្តិការណ៍បំពេញ៖ «បានមុខរូបយ៉ាងតិច ១ ដង» គឺផ្ទុយពី «មិនបានមុខរូបទាល់តែសោះ (គឺចេញលេខទាំង ៣ ដង លលល)»។<br>
-                    ករណីចេញលេខទាំង ៣ ដង មានតែ ១ ករណីគត់ $\implies$ ប្រូបាបចេញលេខទាំងអស់ $P(\bar{A}) = \frac{1}{8}$។<br>
-                    នាំឱ្យប្រូបាបដែលយើងចង់បានគឺ $P(A) = 1 - P(\bar{A}) = 1 - \frac{1}{8} = \frac{7}{8}$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$\frac{7}{8}$**។
-                </div>
-            </div>
-
-            <div class="question-card" id="q25_box">
-                <div class="question-text">លំហាត់ ២៥. គេឱ្យព្រឹត្តិការណ៍ពីរ $A$ និង $B$ ជាព្រឹត្តិការណ៍មិនទាក់ទងគ្នា ដែលមាន $P(A) = 0.3$ និង $P(B) = 0.4$។ គណនា $P(A \cap B)$។ <span class="points">(៥ ពិន្ទុ)</span></div>
-                <div class="options-container">
-                    <label class="option-label"><input type="radio" name="q25" value="A" data-correct="true"> $0.12$</label>
-                    <label class="option-label"><input type="radio" name="q25" value="B"> $0.70$</label>
-                    <label class="option-label"><input type="radio" name="q25" value="C"> $0.02$</label>
-                    <label class="option-label"><input type="radio" name="q25" value="D"> $0.50$</label>
-                </div>
-                <div class="solution-box">
-                    <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
-                    ដោយសារព្រឹត្តិការណ៍ $A$ និង $B$ មិនទាក់ទងគ្នា (Independent Events) តាមរូបមន្តផលគុណប្រូបាបគេបាន៖<br>
-                    $P(A \cap B) = P(A) \times P(B) = 0.3 \times 0.4 = 0.12$។ ដូចនេះចម្លើយត្រឹមត្រូវគឺ **$0.12$**។
-                </div>
-            </div>
-
-            <button type="button" class="submit-btn" onclick="submitExam()">ផ្ញើកិច្ចការប្រឡង (Submit)</button>
-        </form>
-    </div>
-
-    <script>
-        // មុខងារលាយចម្លើយ (Shuffle Options)
-        window.addEventListener('DOMContentLoaded', () => {
-            const containers = document.querySelectorAll('.options-container');
-            containers.forEach(container => {
-                const labels = Array.from(container.children);
-                for (let i = labels.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    container.appendChild(labels[j]); 
-                }
-            });
-        });
-
-        // រៀបចំម៉ោង ១៥០ នាទី
-        let totalTime = 150 * 60; 
-        const timeDisplay = document.getElementById('timeDisplay');
-        
-        const timerInterval = setInterval(() => {
-            if (totalTime <= 0) {
-                clearInterval(timerInterval);
-                alert("អស់ម៉ោងប្រឡងហើយ! ប្រព័ន្ធនឹងផ្ញើចម្លើយដោយស្វ័យប្រវត្ត។");
-                submitExam();
-            } else {
-                totalTime--;
-                let mins = Math.floor(totalTime / 60);
-                let secs = totalTime % 60;
-                timeDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-            }
-        }, 1000);
-
-        const correctAnswers = {
-            q1: "B", q2: "A", q3: "C", q4: "C", q5: "A",
-            q6: "B", q7: "A", q8: "A", q9: "C", q10: "B",
-            q11: "C", q12: "B", q13: "C", q14: "B", q15: "A",
-            q16: "C", q17: "B", q18: "C", q19: "A", q20: "B",
-            q21: "C", q22: "B", q23: "A", q24: "C", q25: "A"
-        };
-
-        function submitExam() {
-            const name = document.getElementById('studentName').value.trim();
-            const className = document.getElementById('studentClass').value.trim();
-
-            if (!name || !className) {
-                alert("សូមបំពេញ ឈ្មោះសិស្ស និង ថ្នាក់ មុននឹងផ្ញើកិច្ចការ!");
-                return;
-            }
-
-            clearInterval(timerInterval);
-            let score = 0;
-            const form = document.getElementById('quizForm');
-
-            for (let i = 1; i <= 25; i++) {
-                const qName = `q${i}`;
-                const cardId = `q${i}_box`;
-                const cardElement = document.getElementById(cardId);
-                const container = cardElement.querySelector('.options-container');
-                const selectedInput = form.elements[qName].value;
-                
-                const correctInput = container.querySelector('input[data-correct="true"]');
-                if (correctInput) {
-                    correctInput.parentElement.classList.add('correct-flash');
-                }
-
-                if (selectedInput === correctAnswers[qName]) {
-                    score += 5;
-                } else {
-                    cardElement.classList.add('incorrect-flash');
-                }
-
-                const solutionBox = cardElement.querySelector('.solution-box');
-                if (solutionBox) {
-                    solutionBox.style.display = 'block';
-                }
-            }
-
-            document.getElementById('studentResultName').textContent = `សិស្សឈ្មោះ៖ ${name} | ថ្នាក់៖ ${className}`;
-            document.getElementById('scoreDisplay').textContent = score;
-            
-            let timeSpent = (150 * 60) - totalTime;
-            let minutesSpent = Math.floor(timeSpent / 60);
-            let secondsSpent = timeSpent % 60;
-            document.getElementById('timeSpentDisplay').textContent = `រយៈពេលប្រើប្រាស់៖ ${minutesSpent} នាទី ${secondsSpent} វិនាទី`;
-
-            document.getElementById('resultBox').style.display = 'block';
-            document.getElementById('infoBox').style.display = 'none';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            const inputs = form.querySelectorAll('input[type="radio"]');
-            inputs.forEach(input => input.disabled = true);
-            form.querySelector('.submit-btn').style.display = 'none';
-            
-            if (window.MathJax) {
-                MathJax.typesetPromise();
-            }
-        }
-    </script>
 </body>
 </html>
