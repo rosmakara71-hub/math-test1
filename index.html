@@ -3,300 +3,910 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ប្រព័ន្ធផ្ទុកសំណួរអំពីសីលនិងចេតសិក</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>កម្រងសំណួរនិងលំហាត់វាស់ស្ទង់សមត្ថភាព</title>
     
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-            --secondary-color: #2563eb;
-            --accent-color: #3b82f6;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --card-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.05), 0 8px 16px -6px rgba(2, 6, 23, 0.05);
-            --hover-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
-        }
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
+    <style>
+/* រចនាប័ទ្មសម្រាប់ប៊ូតុងបញ្ជាទិស */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 15px 0;
+    border-top: 2px dashed #e2e8f0;
+}
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* ប៊ូតុងទំព័រដើម (ពណ៌ប្រផេះ/សូកូឡាស្រាល មើលទៅរៀបរយ) */
+.btn-home {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-home:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* ប៊ូតុងវិញ្ញាសាបន្ទាប់ (ពណ៌ខៀវលេចធ្លោ ជំរុញឱ្យសិស្សចុចទៅមុខ) */
+.btn-next {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-next:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(37, 99, 235, 0.3);
+}
+
+/* រៀបចំ SVG Icon ឱ្យរត់រលូនពេល hover */
+.btn-nav svg {
+    transition: transform 0.2s ease;
+}
+.btn-home:hover svg {
+    transform: scale(1.1);
+}
+.btn-next:hover svg {
+    transform: translateX(4px);
+}
+        @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&family=Moul&display=swap');
+        
         body {
             font-family: 'Kantumruy Pro', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: #f0f4f8;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            padding: 20px;
+            color: #1e293b;
         }
-
-        header {
-            background: var(--primary-gradient);
-            color: white;
+        .exam-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .header {
             text-align: center;
-            padding: 50px 20px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+            border-bottom: 3px double #1e3a8a;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #60a5fa, #3b82f6);
+        .kingdom {
+            font-family: 'Moul', sans-serif;
+            font-size: 16px;
+            margin: 0 0 5px 0;
+            color: #1e3a8a;
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        header p {
-            margin: 12px 0 0 0;
-            font-size: 15px;
-            opacity: 0.85;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .exam-title {
+            font-family: 'Moul', sans-serif;
+            font-size: 18px;
+            color: #b91c1c;
+            margin: 20px 0 5px 0;
             line-height: 1.6;
         }
-
-        main {
-            flex: 1;
-            max-width: 1000px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 0 24px;
-            box-sizing: border-box;
+        .author {
+            font-size: 14px;
+            font-weight: bold;
+            color: #334155;
+            margin-top: 5px;
         }
-
-        .grid-container {
+        .student-info-box {
+            background-color: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border: 1px solid #e2e8f0;
         }
-
-        .lesson-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 28px 20px;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            color: inherit;
+        .input-group {
             display: flex;
             flex-direction: column;
+        }
+        .input-group label {
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #334155;
+        }
+        .input-group input {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: #1e3a8a;
+        }
+        .sticky-bar {
+            position: sticky;
+            top: 10px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 30px;
+            z-index: 1000;
+            border-left: 6px solid #1e3a8a;
         }
-
-        /* បង្កើតលេខសម្គាល់តូចៗនៅជ្រុង Card */
-        .lesson-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: transparent;
-            transition: background 0.3s ease;
+        .question-card {
+            display: none;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
         }
-
-        .lesson-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--hover-shadow);
-            border-color: rgba(37, 99, 235, 0.2);
+        .question-card.active {
+            display: block;
         }
-
-        .lesson-card:hover::before {
-            background: var(--secondary-color);
+        .question-card:hover {
+            border-color: #1e3a8a;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
         }
-
-        .icon-wrapper {
-            width: 70px;
-            height: 70px;
-            background: #f8fafc;
-            border-radius: 50%;
+        .question-text {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 18px;
+            color: #0f172a;
+            line-height: 1.8;
+        }
+        .points {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: normal;
+        }
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 10px;
+        }
+        @media (max-width: 650px) {
+            .options-container { grid-template-columns: 1fr; }
+            .student-info-box { grid-template-columns: 1fr; }
+        }
+        .option-label {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            border: 1px solid #f1f5f9;
+            padding: 12px 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
         }
-
-        .lesson-card:hover .icon-wrapper {
-            background: #eff6ff;
-            transform: scale(1.05);
+        .option-label:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
         }
-
-        .icon {
-            font-size: 34px;
+        .option-label input {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
         }
-
-        .class-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-main);
-            margin: 4px 0 0 0;
-            transition: color 0.2s ease;
+        .solution-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            border-radius: 6px;
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #1e293b;
         }
-
-        .lesson-card:hover .class-title {
-            color: var(--secondary-color);
+        .solution-title {
+            font-weight: bold;
+            color: #16a34a;
+            margin-bottom: 8px;
+            font-size: 15px;
         }
-
-        .btn-view {
-            margin-top: 16px;
-            font-size: 13px;
-            background-color: #f1f5f9;
-            color: var(--text-muted);
-            padding: 8px 24px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            width: 60%;
+        
+        .navigation-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 15px;
         }
-
-        .lesson-card:hover .btn-view {
-            background: var(--secondary-color);
+        .nav-btn {
+            padding: 12px 25px;
+            background: #64748b;
             color: white;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            border: none;
+            border-radius: 6px;
+            font-family: 'Kantumruy Pro', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
         }
-
-        footer {
+        .nav-btn:hover {
+            background: #475569;
+        }
+        .nav-btn.next-btn {
+            background: #2563eb;
+        }
+        .nav-btn.next-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .submit-btn {
+            display: none;
+            width: 100%;
+            padding: 16px;
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Kantumruy Pro', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(30, 58, 138, 0.15);
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+        .result-box {
+            display: none;
+            background: #eff6ff;
+            border: 2px solid #2563eb;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
-            padding: 25px;
-            font-size: 13px;
-            color: var(--text-muted);
-            border-top: 1px solid #e2e8f0;
-            background: white;
-            margin-top: 40px;
+            margin-bottom: 30px;
         }
+        .result-title {
+            font-family: 'Moul', sans-serif;
+            color: #1e3a8a;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .grade-badge {
+            display: inline-block;
+            font-size: 36px;
+            font-weight: bold;
+            padding: 5px 30px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-family: sans-serif;
+        }
+        .grade-A { background-color: #d1fae5; color: #065f46; border: 2px solid #34d399; }
+        .grade-B { background-color: #e0f2fe; color: #075985; border: 2px solid #38bdf8; }
+        .grade-C { background-color: #fef9c3; color: #854d0e; border: 2px solid #facc15; }
+        .grade-D { background-color: #ffedd5; color: #9a3412; border: 2px solid #fb923c; }
+        .grade-E { background-color: #f3e8ff; color: #6b21a8; border: 2px solid #c084fc; }
+        .grade-F { background-color: #fee2e2; color: #991b1b; border: 2px solid #f87171; }
+
+        .correct-flash { background: #d1fae5 !important; border-color: #10b981 !important; }
+        .incorrect-flash { background: #fee2e2 !important; border-color: #ef4444 !important; }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>📚 កម្រងសំណួរអំពីសីលនិងចេតសិក</h1>
-        <p>សូមជ្រើសរើសប្រព័ន្ធវិញ្ញាសាខាងក្រោម ដើម្បីចាប់ផ្ដើមធ្វើតេស្ត</p>
-    </header>
-
-    <main>
-        <div class="grid-container">
-            <a href="1.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="2.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ២</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="3.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៣</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="4.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៤</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="5.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៥</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="6.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៦</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="7.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៧</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="8.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៨</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="9.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ៩</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="10.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១០</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="11.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១១</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="12.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១២</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="13.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១៣</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="14.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១៤</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="15.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១៥</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
-
-            <a href="16.html" class="lesson-card">
-                <div class="icon-wrapper"><div class="icon">📝</div></div>
-                <h2 class="class-title">វិញ្ញាសាទី ១៦</h2>
-                <div class="btn-view">ចូលមើល</div>
-            </a>
+    <div class="exam-container">
+        <div class="header">
+            <div class="kingdom">ព្រះរាជាណាចក្រកម្ពុជា</div>
+            <div class="kingdom" style="font-size: 13px;">ជាតិ សាសនា ព្រះមហាក្សត្រ</div>
+            <div class="exam-title">កម្រងសំណួរនិងលំហាត់វាស់ស្ទង់សមត្ថភាព</div>
+            <div class="author">រៀបរៀង និងផ្ទៀងផ្ទាត់ដោយ៖ លោកគ្រូ រស់ មករា</div>
         </div>
-    </main>
 
-    <footer>
-        &copy; 2026 gemini។
-    </footer>
+        <div class="student-info-box" id="infoBox">
+            <div class="input-group">
+                <label for="studentName">នាមត្រកូល និងនាមខ្លួនបេក្ខជន *</label>
+                <input type="text" id="studentName" placeholder="តើអ្នកឈ្មោះអ្វី?" required>
+            </div>
+            <div class="input-group">
+                <label for="studentClass">ថ្នាក់/បន្ទប់សិក្សា *</label>
+                <input type="text" id="studentClass" placeholder="តើអ្នករៀនថ្នាក់ណា?" required>
+            </div>
+        </div>
 
+        <div class="sticky-bar">
+            <div style="font-weight: bold; color: #1e3a8a;" id="progressDisplay">លំហាត់ទី ១/--</div>
+            <div style="font-weight: bold; color: #1e3a8a;">ពិន្ទុរួម៖ <span id="totalPointsDisplay">0</span></div>
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <div class="result-title">លទ្ធផលប្រឡងផ្លូវការ</div>
+            <p id="studentResultName" style="font-weight: bold; font-size: 16px; margin-bottom: 5px;"></p>
+            <p style="font-size: 24px; color: #1e293b; font-weight: bold; margin: 10px 0 5px 0;">ពិន្ទុទទួលបាន៖ <span id="scoreDisplay">0</span> / <span id="maxPointsDisplay">0</span> (<span id="percentDisplay">0</span>%)</p>
+            
+            <p style="font-size: 16px; color: #475569; font-weight: bold; margin: 5px 0 15px 0;">
+                ⏱️ ចំណាយពេល៖ <span id="timeSpentDisplay" style="color: #b91c1c;"></span>
+            </p>
+
+            <div><span id="gradeDisplay" class="grade-badge">F</span></div>
+            <p id="gradeComment" style="font-weight: bold; color: #475569; font-size: 15px; margin-bottom: 15px;"></p>
+            
+            <p style="color: #16a34a; font-weight: bold; margin-top: 12px; border-top: 1px dashed #cbd5e1; padding-top: 15px;">👇 សូមពិនិត្យវិធីសាស្ត្រដោះស្រាយលម្អិតនៅខាងក្រោមសំនួរនីមួយៗ!</p>
+        </div>
+
+        <form id="quizForm" onsubmit="submitExam(event)">                    
+            <div id="questionsContainer">                
+                
+
+<div class="question-card" data-qindex="1">
+    <div class="question-text"><span class="q-number">១.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = 2x + 3$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q1" value="W1"> $y = x^2 + 3$</label>
+        <label class="option-label"><input type="radio" name="q1" value="C" data-correct="true"> $y = x^2 + 3x + C$</label>
+        <label class="option-label"><input type="radio" name="q1" value="W2"> $y = 2x^2 + 3x + C$</label>
+        <label class="option-label"><input type="radio" name="q1" value="W3"> $y = x^2 + 3x$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ធ្វើអាំងតេក្រាលលើអង្គទាំងពីរ៖<br>
+        $y = \int (2x + 3) \, dx = x^2 + 3x + C$ (ដែល $C$ ជាចំនួនពិតថេរ)។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="2">
+    <div class="question-text"><span class="q-number">២.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = e^{2x}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q2" value="W1"> $y = 2e^{2x} + C$</label>
+        <label class="option-label"><input type="radio" name="q2" value="W2"> $y = e^{2x} + C$</label>
+        <label class="option-label"><input type="radio" name="q2" value="C" data-correct="true"> $y = \frac{1}{2}e^{2x} + C$</label>
+        <label class="option-label"><input type="radio" name="q2" value="W3"> $y = \frac{1}{2}e^x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        $y = \int e^{2x} \, dx = \frac{1}{2}e^{2x} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="3">
+    <div class="question-text"><span class="q-number">៣.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \cos x - \sin x$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q3" value="C" data-correct="true"> $y = \sin x + \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q3" value="W1"> $y = \sin x - \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q3" value="W2"> $y = -\sin x + \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q3" value="W3"> $y = -\sin x - \cos x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        $y = \int (\cos x - \sin x) \, dx = \sin x - (-\cos x) + C = \sin x + \cos x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="4">
+    <div class="question-text"><span class="q-number">៤.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{x}$ ចំពោះ $x > 0$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q4" value="W1"> $y = -\frac{1}{x^2} + C$</label>
+        <label class="option-label"><input type="radio" name="q4" value="C" data-correct="true"> $y = \ln x + C$</label>
+        <label class="option-label"><input type="radio" name="q4" value="W2"> $y = \ln|x|$</label>
+        <label class="option-label"><input type="radio" name="q4" value="W3"> $y = e^x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ដោយសារ $x > 0$ នោះ $y = \int \frac{1}{x} \, dx = \ln x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="5">
+    <div class="question-text"><span class="q-number">៥.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = 3x^2 - 4x + 5$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q5" value="W1"> $y = 6x - 4 + C$</label>
+        <label class="option-label"><input type="radio" name="q5" value="W2"> $y = 3x^3 - 4x^2 + 5x + C$</label>
+        <label class="option-label"><input type="radio" name="q5" value="C" data-correct="true"> $y = x^3 - 2x^2 + 5x + C$</label>
+        <label class="option-label"><input type="radio" name="q5" value="W3"> $y = x^3 - 4x^2 + 5x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        $y = \int (3x^2 - 4x + 5) \, dx = \frac{3x^3}{3} - \frac{4x^2}{2} + 5x + C = x^3 - 2x^2 + 5x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="6">
+    <div class="question-text"><span class="q-number">៦.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{2\sqrt{x}}$ ចំពោះ $x > 0$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q6" value="C" data-correct="true"> $y = \sqrt{x} + C$</label>
+        <label class="option-label"><input type="radio" name="q6" value="W1"> $y = 2\sqrt{x} + C$</label>
+        <label class="option-label"><input type="radio" name="q6" value="W2"> $y = \frac{1}{\sqrt{x}} + C$</label>
+        <label class="option-label"><input type="radio" name="q6" value="W3"> $y = \frac{2}{3}x^{\frac{3}{2}} + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាមរូបមន្តគ្រឹះនៃព្រីមីទីវ៖ $\int \frac{1}{2\sqrt{x}} \, dx = \sqrt{x} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="7">
+    <div class="question-text"><span class="q-number">៧.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \sin(3x)$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q7" value="W1"> $y = 3\cos(3x) + C$</label>
+        <label class="option-label"><input type="radio" name="q7" value="W2"> $y = -\frac{1}{3}\sin(3x) + C$</label>
+        <label class="option-label"><input type="radio" name="q7" value="C" data-correct="true"> $y = -\frac{1}{3}\cos(3x) + C$</label>
+        <label class="option-label"><input type="radio" name="q7" value="W3"> $y = \frac{1}{3}\cos(3x) + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាមរូបមន្ត $\int \sin(ax) \, dx = -\frac{1}{a}\cos(ax) + C$ នាំឲ្យ $y = -\frac{1}{3}\cos(3x) + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="8">
+    <div class="question-text"><span class="q-number">៨.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{\cos^2 x}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q8" value="W1"> $y = -\cot x + C$</label>
+        <label class="option-label"><input type="radio" name="q8" value="C" data-correct="true"> $y = \tan x + C$</label>
+        <label class="option-label"><input type="radio" name="q8" value="W2"> $y = \sin x + C$</label>
+        <label class="option-label"><input type="radio" name="q8" value="W3"> $y = \frac{1}{\sin^2 x} + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ដោយសារដេរីវេនៃ $\tan x$ គឺ $\frac{1}{\cos^2 x}$ នាំឲ្យ $y = \int \frac{1}{\cos^2 x} \, dx = \tan x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="9">
+    <div class="question-text"><span class="q-number">៩.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = x e^{x^2}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q9" value="C" data-correct="true"> $y = \frac{1}{2}e^{x^2} + C$</label>
+        <label class="option-label"><input type="radio" name="q9" value="W1"> $y = e^{x^2} + C$</label>
+        <label class="option-label"><input type="radio" name="q9" value="W2"> $y = 2e^{x^2} + C$</label>
+        <label class="option-label"><input type="radio" name="q9" value="W3"> $y = \frac{1}{2}x^2 e^{x^2} + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = x^2 \Rightarrow du = 2x\,dx \Rightarrow x\,dx = \frac{1}{2}du$។<br>
+        $y = \int e^u \cdot \frac{1}{2}du = \frac{1}{2}e^u + C = \frac{1}{2}e^{x^2} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="10">
+    <div class="question-text"><span class="q-number">១០.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{2x}{x^2 + 1}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q10" value="W1"> $y = (x^2 + 1)^2 + C$</label>
+        <label class="option-label"><input type="radio" name="q10" value="W2"> $y = \arctan(x) + C$</label>
+        <label class="option-label"><input type="radio" name="q10" value="C" data-correct="true"> $y = \ln(x^2 + 1) + C$</label>
+        <label class="option-label"><input type="radio" name="q10" value="W3"> $y = \ln|2x| + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        សមីការមានទម្រង់ $y' = \frac{u'}{u}$ ដែល $u = x^2 + 1$ (ព្រោះ $u' = 2x$)។<br>
+        នាំឲ្យ $y = \ln|u| + C = \ln(x^2 + 1) + C$ (ដោយសារ $x^2 + 1 > 0$)។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="11">
+    <div class="question-text"><span class="q-number">១១.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = 5^x$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q11" value="W1"> $y = 5^x \ln 5 + C$</label>
+        <label class="option-label"><input type="radio" name="q11" value="C" data-correct="true"> $y = \frac{5^x}{\ln 5} + C$</label>
+        <label class="option-label"><input type="radio" name="q11" value="W2"> $y = \frac{5^{x+1}}{x+1} + C$</label>
+        <label class="option-label"><input type="radio" name="q11" value="W3"> $y = 5^x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាមរូបមន្តព្រីមីទីវនៃអនុគមន៍សន្ទស្សន៍៖ $\int a^x \, dx = \frac{a^x}{\ln a} + C$ នាំឲ្យ $y = \frac{5^x}{\ln 5} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="12">
+    <div class="question-text"><span class="q-number">១២.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{\ln x}{x}$ ចំពោះ $x > 0$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q12" value="W1"> $y = \ln(\ln x) + C$</label>
+        <label class="option-label"><input type="radio" name="q12" value="W2"> $y = \frac{1}{2x^2} + C$</label>
+        <label class="option-label"><input type="radio" name="q12" value="C" data-correct="true"> $y = \frac{1}{2}(\ln x)^2 + C$</label>
+        <label class="option-label"><input type="radio" name="q12" value="W3"> $y = (\ln x)^2 + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = \ln x \Rightarrow du = \frac{1}{x}dx$។<br>
+        $y = \int u \, du = \frac{1}{2}u^2 + C = \frac{1}{2}(\ln x)^2 + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="13">
+    <div class="question-text"><span class="q-number">១៣.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{x^2 + 1}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q13" value="W1"> $y = \ln(x^2 + 1) + C$</label>
+        <label class="option-label"><input type="radio" name="q13" value="C" data-correct="true"> $y = \arctan x + C$</label>
+        <label class="option-label"><input type="radio" name="q13" value="W2"> $y = -\frac{1}{x} + C$</label>
+        <label class="option-label"><input type="radio" name="q13" value="W3"> $y = \arcsin x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាមរូបមន្តព្រីមីទីវគ្រឹះ៖ $\int \frac{1}{1+x^2} \, dx = \arctan x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="14">
+    <div class="question-text"><span class="q-number">១៤.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = x\cos x$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q14" value="C" data-correct="true"> $y = x\sin x + \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q14" value="W1"> $y = x\sin x - \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q14" value="W2"> $y = -x\sin x + \cos x + C$</label>
+        <label class="option-label"><input type="radio" name="q14" value="W3"> $y = \frac{1}{2}x^2\sin x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ប្រើអាំងតេក្រាលដោយផ្នែក $\int u \, dv = uv - \int v \, du$៖<br>
+        តាង $u = x \Rightarrow du = dx$ និង $dv = \cos x \, dx \Rightarrow v = \sin x$។<br>
+        $y = x\sin x - \int \sin x \, dx = x\sin x - (-\cos x) + C = x\sin x + \cos x + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="15">
+    <div class="question-text"><span class="q-number">១៥.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{x^2 - 1}$ ចំពោះ $x > 1$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q15" value="W1"> $y = \ln(x^2 - 1) + C$</label>
+        <label class="option-label"><input type="radio" name="q15" value="C" data-correct="true"> $y = \frac{1}{2}\ln\left(\frac{x-1}{x+1}\right) + C$</label>
+        <label class="option-label"><input type="radio" name="q15" value="W2"> $y = \frac{1}{2}\ln\left(\frac{x+1}{x-1}\right) + C$</label>
+        <label class="option-label"><input type="radio" name="q15" value="W3"> $y = \arctan x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        បំបែកប្រភាគងាយ៖ $\frac{1}{x^2-1} = \frac{1}{2}\left(\frac{1}{x-1} - \frac{1}{x+1}\right)$។<br>
+        $y = \frac{1}{2} \int \left(\frac{1}{x-1} - \frac{1}{x+1}\right) \, dx = \frac{1}{2}(\ln(x-1) - \ln(x+1)) + C = \frac{1}{2}\ln\left(\frac{x-1}{x+1}\right) + C$ (ព្រោះ $x > 1$)។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="16">
+    <div class="question-text"><span class="q-number">១៦.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \sin^2 x$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q16" value="W1"> $y = \frac{1}{3}\sin^3 x + C$</label>
+        <label class="option-label"><input type="radio" name="q16" value="C" data-correct="true"> $y = \frac{x}{2} - \frac{\sin(2x)}{4} + C$</label>
+        <label class="option-label"><input type="radio" name="q16" value="W2"> $y = \frac{x}{2} + \frac{\sin(2x)}{4} + C$</label>
+        <label class="option-label"><input type="radio" name="q16" value="W3"> $y = -\cos^2 x + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ប្រើរូបមន្តបន្ថយដឺក្រេ៖ $\sin^2 x = \frac{1 - \cos(2x)}{2}$។<br>
+        $y = \int \left(\frac{1}{2} - \frac{\cos(2x)}{2}\right) \, dx = \frac{x}{2} - \frac{\sin(2x)}{4} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="17">
+    <div class="question-text"><span class="q-number">១៧.</span> រកចម្លើយពិសេសនៃសមីការឌីផេរ៉ង់ស្យែល $y' = 4x^3$ ដែលផ្ទៀងផ្ទាត់លក្ខខណ្ឌដើម $y(1) = 5$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q17" value="W1"> $y = x^4 + 5$</label>
+        <label class="option-label"><input type="radio" name="q17" value="W2"> $y = x^4 + C$</label>
+        <label class="option-label"><input type="radio" name="q17" value="C" data-correct="true"> $y = x^4 + 4$</label>
+        <label class="option-label"><input type="radio" name="q17" value="W3"> $y = 12x^2 - 7$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        រកចម្លើយទូទៅ៖ $y = \int 4x^3 \, dx = x^4 + C$។<br>
+        ប្រើលក្ខខណ្ឌដើម $y(1) = 5 \Rightarrow 1^4 + C = 5 \Rightarrow C = 4$។<br>
+        ដូចនេះ ចម្លើយពិសេសគឺ $y = x^4 + 4$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="18">
+    <div class="question-text"><span class="q-number">១៨.</span> រកចម្លើយពិសេសនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \cos x$ ដែលផ្ទៀងផ្ទាត់លក្ខខណ្ឌដើម $y(0) = 2$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q18" value="C" data-correct="true"> $y = \sin x + 2$</label>
+        <label class="option-label"><input type="radio" name="q18" value="W1"> $y = -\sin x + 2$</label>
+        <label class="option-label"><input type="radio" name="q18" value="W2"> $y = \sin x$</label>
+        <label class="option-label"><input type="radio" name="q18" value="W3"> $y = \cos x + 1$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ចម្លើយទូទៅ៖ $y = \sin x + C$។<br>
+        ជំនួស $x=0, y=2 \Rightarrow \sin(0) + C = 2 \Rightarrow C = 2$។<br>
+        ដូចនេះ ចម្លើយពិសេសគឺ $y = \sin x + 2$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="19">
+    <div class="question-text"><span class="q-number">១៩.</span> រកចម្លើយពិសេសនៃសមីការឌីផេរ៉ង់ស្យែល $y' = e^x + 2$ ដែលផ្ទៀងផ្ទាត់លក្ខខណ្ឌដើម $y(0) = 3$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q19" value="W1"> $y = e^x + 2x + 3$</label>
+        <label class="option-label"><input type="radio" name="q19" value="C" data-correct="true"> $y = e^x + 2x + 2$</label>
+        <label class="option-label"><input type="radio" name="q19" value="W2"> $y = e^x + 2x + 1$</label>
+        <label class="option-label"><input type="radio" name="q19" value="W3"> $y = e^x + 2$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ចម្លើយទូទៅ៖ $y = e^x + 2x + C$។<br>
+        ជំនួស $x=0, y=3 \Rightarrow e^0 + 2(0) + C = 3 \Rightarrow 1 + C = 3 \Rightarrow C = 2$។<br>
+        ដូចនេះ ចម្លើយពិសេសគឺ $y = e^x + 2x + 2$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="20">
+    <div class="question-text"><span class="q-number">២០.</span> រកចម្លើយពិសេសនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{x+1}$ ចំពោះ $x > -1$ ដែលផ្ទៀងផ្ទាត់លក្ខខណ្ឌដើម $y(0) = 1$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q20" value="W1"> $y = \ln(x+1)$</label>
+        <label class="option-label"><input type="radio" name="q20" value="W2"> $y = \ln(x+1) + C$</label>
+        <label class="option-label"><input type="radio" name="q20" value="C" data-correct="true"> $y = \ln(x+1) + 1$</label>
+        <label class="option-label"><input type="radio" name="q20" value="W3"> $y = -\frac{1}{(x+1)^2} + 2$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ចម្លើយទូទៅ៖ $y = \ln(x+1) + C$ (ព្រោះ $x+1 > 0$)។<br>
+        ជំនួស $x=0, y=1 \Rightarrow \ln(1) + C = 1 \Rightarrow 0 + C = 1 \Rightarrow C = 1$។<br>
+        ដូចនេះ ចម្លើយពិសេសគឺ $y = \ln(x+1) + 1$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="21">
+    <div class="question-text"><span class="q-number">២១.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \sqrt{2x+1}$ ចំពោះ $x > -\frac{1}{2}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q21" value="W1"> $y = \frac{2}{3}(2x+1)^{\frac{3}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q21" value="C" data-correct="true"> $y = \frac{1}{3}(2x+1)^{\frac{3}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q21" value="W2"> $y = \frac{1}{2}(2x+1)^{\frac{1}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q21" value="W3"> $y = (2x+1)^{\frac{3}{2}} + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = 2x+1 \Rightarrow du = 2\,dx \Rightarrow dx = \frac{1}{2}du$។<br>
+        $y = \int u^{\frac{1}{2}} \cdot \frac{1}{2}du = \frac{1}{2} \cdot \frac{2}{3}u^{\frac{3}{2}} + C = \frac{1}{3}(2x+1)^{\frac{3}{2}} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="22">
+    <div class="question-text"><span class="q-number">២២.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = x^2 \sqrt{x^3 + 1}$ ចំពោះ $x > -1$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q22" value="C" data-correct="true"> $y = \frac{2}{9}(x^3 + 1)^{\frac{3}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q22" value="W1"> $y = \frac{2}{3}(x^3 + 1)^{\frac{3}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q22" value="W2"> $y = \frac{1}{3}(x^3 + 1)^{\frac{3}{2}} + C$</label>
+        <label class="option-label"><input type="radio" name="q22" value="W3"> $y = \frac{2}{9}x^3(x^3 + 1)^{\frac{3}{2}} + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = x^3 + 1 \Rightarrow du = 3x^2\,dx \Rightarrow x^2\,dx = \frac{1}{3}du$។<br>
+        $y = \int u^{\frac{1}{2}} \cdot \frac{1}{3}du = \frac{1}{3} \cdot \frac{2}{3}u^{\frac{3}{2}} + C = \frac{2}{9}(x^3 + 1)^{\frac{3}{2}} + C$។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="23">
+    <div class="question-text"><span class="q-number">២៣.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{e^x}{e^x + 2}$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q23" value="W1"> $y = \ln(e^x) + C$</label>
+        <label class="option-label"><input type="radio" name="q23" value="C" data-correct="true"> $y = \ln(e^x + 2) + C$</label>
+        <label class="option-label"><input type="radio" name="q23" value="W2"> $y = \frac{e^x}{\ln(e^x + 2)} + C$</label>
+        <label class="option-label"><input type="radio" name="q23" value="W3"> $y = e^x \ln(e^x + 2) + C$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = e^x + 2 \Rightarrow du = e^x\,dx$។<br>
+        $y = \int \frac{1}{u} \, du = \ln|u| + C = \ln(e^x + 2) + C$ (ព្រោះ $e^x + 2 > 0$)។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="24">
+    <div class="question-text"><span class="q-number">២៤.</span> រកចម្លើយទូទៅនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{x\ln x}$ ចំពោះ $x > 1$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q24" value="W1"> $y = \ln x + C$</label>
+        <label class="option-label"><input type="radio" name="q24" value="W2"> $y = \frac{1}{\ln x} + C$</label>
+        <label class="option-label"><input type="radio" name="q24" value="C" data-correct="true"> $y = \ln(\ln x) + C$</label>
+        <label class="option-label"><input type="radio" name="q24" value="W3"> $y = \ln|\ln x|$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        តាង $u = \ln x \Rightarrow du = \frac{1}{x}dx$។<br>
+        $y = \int \frac{1}{u} \, du = \ln|u| + C = \ln(\ln x) + C$ (ព្រោះ $x > 1 \Rightarrow \ln x > 0$)។
+    </div>
+</div>
+
+<div class="question-card" data-qindex="25">
+    <div class="question-text"><span class="q-number">២៥.</span> រកចម្លើយពិសេសនៃសមីការឌីផេរ៉ង់ស្យែល $y' = \frac{1}{1+x^2}$ ដែលផ្ទៀងផ្ទាត់លក្ខខណ្ឌដើម $y(1) = \pi$។ <span class="points">(៥ ពិន្ទុ)</span></div>
+    <div class="options-container">
+        <label class="option-label"><input type="radio" name="q25" value="W1"> $y = \arctan x + \pi$</label>
+        <label class="option-label"><input type="radio" name="q25" value="W2"> $y = \arctan x + \frac{\pi}{4}$</label>
+        <label class="option-label"><input type="radio" name="q25" value="C" data-correct="true"> $y = \arctan x + \frac{3\pi}{4}$</label>
+        <label class="option-label"><input type="radio" name="q25" value="W3"> $y = \arctan x - \frac{\pi}{4}$</label>
+    </div>
+    <div class="solution-box">
+        <div class="solution-title">💡 ដំណោះស្រាយលម្អិត៖</div>
+        ចម្លើយទូទៅ៖ $y = \arctan x + C$។<br>
+        ជំនួស $x=1, y=\pi \Rightarrow \arctan(1) + C = \pi \Rightarrow \frac{\pi}{4} + C = \pi \Rightarrow C = \pi - \frac{\pi}{4} = \frac{3\pi}{4}$។<br>
+        ដូចនេះ ចម្លើយពិសេសគឺ $y = \arctan x + \frac{3\pi}{4}$។
+    </div>
+</div>
+                </div>
+
+            <div class="navigation-box" id="navBox">
+                <button type="button" class="nav-btn" id="prevBtn" onclick="changeQuestion(-1)" disabled>⏮ ថយក្រោយ</button>
+                <button type="button" class="nav-btn next-btn" id="nextBtn" onclick="changeQuestion(1)">បន្ទាប់ ⏭</button>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">ផ្ញើចម្លើយ</button>
+        </form>
+    </div>
+
+    <script>
+        let currentQuestionIndex = 0; 
+        let shuffledCards = [];
+        let totalExamPoints = 0;
+        
+        // 🌟 ចាប់ផ្តើមកត់ត្រាម៉ោងភ្លាមៗនៅពេលសិស្សបើកទំព័រវិញ្ញាសា
+        let startTime = new Date(); 
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initQuiz() {
+            const container = document.getElementById('questionsContainer');
+            const cards = Array.from(container.getElementsByClassName('question-card'));
+            
+            totalExamPoints = cards.length * 5;
+            document.getElementById('totalPointsDisplay').innerText = totalExamPoints;
+
+            cards.forEach(card => {
+                const optionsContainer = card.querySelector('.options-container');
+                if (optionsContainer) {
+                    const options = Array.from(optionsContainer.getElementsByClassName('option-label'));
+                    shuffleArray(options);
+                    options.forEach(opt => optionsContainer.appendChild(opt));
+                }
+            });
+
+            shuffleArray(cards);
+            container.innerHTML = '';
+            cards.forEach(card => container.appendChild(card));
+
+            shuffledCards = cards;
+            shuffledCards[0].classList.add('active');
+            
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            const total = shuffledCards.length;
+            document.getElementById('progressDisplay').innerText = `លំហាត់ទី ${currentQuestionIndex + 1}/${total}`;
+
+            if (currentQuestionIndex === 0) {
+                document.getElementById('prevBtn').disabled = true;
+            } else {
+                document.getElementById('prevBtn').disabled = false;
+            }
+
+            if (currentQuestionIndex === total - 1) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('submitBtn').style.display = 'block';
+            } else {
+                document.getElementById('nextBtn').style.display = 'block';
+                document.getElementById('submitBtn').style.display = 'none';
+            }
+        }
+
+        function changeQuestion(direction) {
+            shuffledCards[currentQuestionIndex].classList.remove('active');
+            currentQuestionIndex += direction;
+            shuffledCards[currentQuestionIndex].classList.add('active');
+            updateNavigation();
+        }
+
+        function calculateGradeFromPercentage(percentage) {
+            let grade = 'F'; let comment = ''; let cssClass = 'grade-F';
+            if (percentage >= 90) { grade = 'A'; comment = '🎉 ល្អប្រសើរណាស់! លោកគ្រូសរសើរ។ អ្នកពិតជាមានសមត្ថភាពខ្ពស់ និងយល់ច្បាស់ពីមេរៀន។ សូមបន្តការខិតខំនេះ!'; cssClass = 'grade-A'; }
+            else if (percentage >= 80) { grade = 'B'; comment = '✨ ល្អណាស់! លទ្ធផលគួរឱ្យមោទនៈ។ បន្ថែមការប្រុងប្រយ័ត្នបន្តិចទៀត អ្នកនឹងបាននិទ្ទេស A ជាក់ជាមិនខាន។'; cssClass = 'grade-B'; }
+            else if (percentage >= 70) { grade = 'C'; comment = '👍 ល្អបង្គួរ! លទ្ធផលល្អ។ ព្យាយាមរំលឹកមេរៀនបន្ថែមលើចំណុចដែលខ្វះខាតដើម្បីពង្រឹងសមត្ថភាព។'; cssClass = 'grade-C'; }
+            else if (percentage >= 60) { grade = 'D'; comment = '👌 កម្រិតមធ្យម! អ្នកបានឆ្លងផុតការវាយតម្លៃ ប៉ុន្តែត្រូវបង្កើនការធ្វើលំហាត់បន្ថែមទៀត។'; cssClass = 'grade-D'; }
+            else if (percentage >= 50) { grade = 'E'; comment = '⚠️ កម្រិតខ្សោយ! ជិតជាប់ហើយ។ សូមខិតខំប្រឹងប្រែងបន្ថែម និងសួរលោកគ្រូត្រង់ចំណុចមិនច្បាស់។'; cssClass = 'grade-E'; }
+            else { grade = 'F'; comment = '❌ មិនទាន់ជាប់ទេ! កុំបាក់ទឹកចិត្តអី។ ពិនិត្យមើលដំណោះស្រាយលម្អិត ហើយព្យាយាមធ្វើឡើងវិញម្តងទៀតណា!'; cssClass = 'grade-F'; }
+            return { grade, comment, cssClass };
+        }
+
+        function submitExam(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('studentName').value.trim();
+            const sClass = document.getElementById('studentClass').value.trim();
+            
+            if (!name || !sClass) {
+                alert('សូមបំពេញឈ្មោះ និងថ្នាក់សិក្សាជាមុនសិន!');
+                shuffledCards[currentQuestionIndex].classList.remove('active');
+                currentQuestionIndex = 0;
+                shuffledCards[currentQuestionIndex].classList.add('active');
+                updateNavigation();
+                return;
+            }
+
+            // 🌟 គណនារយៈពេលដែលសិស្សបានប្រើប្រាស់
+            let endTime = new Date();
+            let timeDiff = endTime - startTime; // គិតជាមីលីវិនាទី
+            timeDiff /= 1000; // ប្តូរទៅជាវិនាទី
+            
+            let seconds = Math.floor(timeDiff % 60);
+            let minutes = Math.floor(timeDiff / 60);
+            
+            let timeString = "";
+            if (minutes > 0) {
+                timeString += `${minutes} នាទី `;
+            }
+            timeString += `${seconds} វិនាទី`;
+            
+            // បង្ហាញរយៈពេលទៅលើ Result Box
+            document.getElementById('timeSpentDisplay').innerText = timeString;
+
+            let score = 0;
+            shuffledCards.forEach((card) => {
+                const radioInput = card.querySelector('input[type="radio"]');
+                if (radioInput) {
+                    const qName = radioInput.name;
+                    const checkedOption = card.querySelector(`input[name="${qName}"]:checked`);
+                    const solutionBox = card.querySelector('.solution-box');
+                    
+                    card.classList.add('active');
+                    if (solutionBox) solutionBox.style.display = 'block';
+
+                    if (checkedOption && checkedOption.getAttribute('data-correct') === 'true') {
+                        score += 5;
+                        card.classList.add('correct-flash');
+                    } else {
+                        card.classList.add('incorrect-flash');
+                    }
+                }
+            });
+
+            document.getElementById('navBox').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('infoBox').style.display = 'none';
+
+            const finalPercentage = Math.round((score / totalExamPoints) * 100);
+            const evaluation = calculateGradeFromPercentage(finalPercentage);
+
+            document.getElementById('studentResultName').innerText = `បេក្ខជន៖ ${name} | ថ្នាក់/បន្ទប់៖ ${sClass}`;
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('maxPointsDisplay').innerText = totalExamPoints;
+            document.getElementById('percentDisplay').innerText = finalPercentage;
+            
+            const gradeBadge = document.getElementById('gradeDisplay');
+            gradeBadge.innerText = `និទ្ទេស៖ ${evaluation.grade}`;
+            gradeBadge.className = `grade-badge ${evaluation.cssClass}
+
+<div class="action-links">
+                <a href="https://rosmakara71-hub.github.io/exam/" target="_blank" class="btn-link btn-home">🌐 ត្រឡប់ទៅទំព័រដើម</a>
+                <a href="https://rosmakara71-hub.github.io/exam/2" target="_blank" class="btn-link btn-next">➡️ ធ្វើកម្រងសំណួរបន្ទាប់</a>
+            </div>`;
+            
+            document.getElementById('gradeComment').innerText = evaluation.comment;
+            document.getElementById('resultBox').style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        window.onload = initQuiz;
+    </script>
 </body>
 </html>
